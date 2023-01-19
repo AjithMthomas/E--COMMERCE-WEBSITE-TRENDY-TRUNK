@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Section: Design Block -->
+<section class="text-center text-lg-start " style="background-color: #9A616D;">
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+            ">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h1 class="fw-bold mb-3">trendy trunk</h1>
+            <h4 class="fw-bold mb-3">Sign up now</h2>
+            <form method="POST" action="{% url 'register' %}">
+              
+              {% csrf_token %}
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                   {{ form.first_name }}
+                    <label class="form-label" for="form3Example1">First name </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                  {{ form.last_name }}
+                    <label class="form-label" for="form3Example2">Last name</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+               {{ form.email}}<br>
+                <label class="form-label" for="form3Example3">Email address</label>
+              </div>
+                <!-- phone number  -->
+              <div class="form-outline mb-4">
+               {{form.phone_number}}<br>
+                <label class="form-label" for="form3Example3">Phone Number</label>
+              </div>
+
+              
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                {{ form.password }}<br>
+                <label class="form-label" for="form3Example4">Password</label>
+              </div>
+            <!-- confirm Password input -->
+            <div class="form-outline mb-4">
+              {{ form.confirm_password }}<br>
+              <label class="form-label" for="form3Example4"> confirm Password</label>
+            </div>
+                        <!-- Checkbox -->
+              <!-- <div class="form-check d-flex justify-content-center mb-4">
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                <label class="form-check-label" for="form2Example33">
+                  Subscribe to our newsletter
+                </label>
+              </div> -->
+              
+              <div id="message" class="container">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="  alert alert-{{ message.tags }}"{% endif %} role="alert">
+                        <button type="button" class="close" data-dismiss="alert" onclick="this.parentNode.remove()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}
+                            {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+               
+              <!-- Submit button -->
+              <div id="message" class="container text-danger" style="list-style: none !important;">
+              {{ form.email.errors }}
+              {{ form.non_field_errors }}
+             </div>
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                Sign up
+              </button>
+              <p class="tex-center mt-4">Have an account? <a href="{% url 'login'%}">Login</a></p>
+
+              <!-- Register buttons -->
+              <!-- <div class="text-center">
+                <p>or sign up with:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-google"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-twitter"></i>
+                </button>
+
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-github"></i>
+                </button>
+              </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <img src="/static/img/product-img/product-8.jpg" class="w-100 rounded-4 shadow-4"
+          alt="" />
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+</body>
+</html>
