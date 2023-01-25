@@ -27,7 +27,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="index.html"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
+                <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -41,7 +41,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="#">Shop</a>
+                            <li><a href="{% url 'shop' %}">Shop</a>
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Women's Collection</li>
@@ -112,7 +112,7 @@
                     </div>
                     <!-- Cart Area -->
                     <div class="cart-area"   style="border-right: 1px solid #ebebeb;">
-                        <a href="#" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                        <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
                     </div>
                       <button class="btn btn-outline-danger border-0 " type="button">
                         <a href="{% url 'logout' %}">
@@ -133,12 +133,12 @@
             <div class="col-lg-4">
               <div class="card mb-4">
                 <div class="card-body text-center">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  <img src="{{users.profile_picture.url}}" alt="avatar"
                     class="rounded-circle img-fluid" style="width: 150px;">
-                  <h5 class="my-3">John Smith</h5>
+                  <h5 class="my-3">Hi {{user.username}}</h5>
                   <div class="d-flex  justify-content-center " style="flex-direction: column;">
-                    <a href="#" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Profile</button> </a>
-                    <a href="#" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Order Hstory</button> </a>
+                    <a href="{% url 'edit_account' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Profile</button> </a>
+                    <a href="{% url 'order_history' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Order Hstory</button> </a>
                     <a href="{% url 'resetPassword' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Password</button> </a>
                   </div>
                 </div>
@@ -149,7 +149,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <p class="mb-0">name</p>
+                      <p class="mb-0">Name</p>
                     </div>
                     <div class="col-sm-9">
                       <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
@@ -176,11 +176,11 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <p class="mb-0">Mobile</p>
+                      <p class="mb-0">Phone Number</p>
                     </div>
-                    {% comment %} <div class="col-sm-9">
-                      <p class="text-muted mb-0">(098) 765-4321</p>
-                    </div> {% endcomment %}
+                     <div class="col-sm-9">
+                      <p class="text-muted mb-0">{{user.phone_number}}</p>
+                    </div>
                   </div>
                   <hr>
                   <div class="row">
@@ -188,7 +188,7 @@
                       <p class="mb-0">Address</p>
                     </div>
                     <div class="col-sm-9">
-                      <p class="text-muted mb-0">......</p>
+                      <p class="text-muted mb-0">{{UserProfile.address_line_1}}</p>
                     </div>
                   </div>
                 </div>

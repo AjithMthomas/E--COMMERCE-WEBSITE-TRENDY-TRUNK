@@ -82,7 +82,7 @@ def logout(request):
 def activate(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
-        user = Account._default_manager.get(pk = uid)
+        user = Account._default_manager.get(pk=uid)
     except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
         user = None
 
@@ -130,7 +130,7 @@ def resetPassword_validate(request,uidb64, token):
         user = Account._default_manager.get(pk=uid)
     except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
         user = None
-    if user is not None and default_token_generator.check_token(user, token):
+    if user is not None and default_token_generator.check_token(user,token):
         request.session['uid']=uid
         messages.success(request,'Please reset your password')
         return redirect('resetPassword')
