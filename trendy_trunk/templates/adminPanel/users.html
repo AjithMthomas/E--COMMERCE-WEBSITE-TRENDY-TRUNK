@@ -49,7 +49,7 @@
           </div>
           <ul class="list-inline mb-0">
             <li class="list-inline-item logout px-lg-2"><button type="button" class="btn btn-info">
-              Total Users <span class="badge bg-danger">{{user_count}}</span>
+              Total Users  <span class="badge bg-danger">{{user_count}}</span>
             </button></li>
             <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="{% url 'logoutAdmin' %}"> <span class="d-none d-sm-inline-block">Logout </span>
                     <svg class="svg-icon svg-icon-xs svg-icon-heavy">
@@ -73,7 +73,7 @@
                 <i class="bi bi-house fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Home</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminUsers' %}"> 
                 <i class="bi bi-people fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Users</span></a></li>
-              <li class="sidebar-item"><a class="sidebar-link" href="charts.html"> 
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminProducts' %}"> 
                 <i class="bi bi-collection fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Products </span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="forms.html"> 
                 <i class="bi bi-ticket fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Coupons</span></a></li>
@@ -105,15 +105,15 @@
         {% for User in Users %}
         <tr>
           <th scope="row">IMG</th>
-          <td>{{User.first_name}} {{User.last_name}}</td>
-          <td>{{User.email}}</td>
-          <td>{{User.phone_number}}</td>
+          <td class="align-middle">{{User.first_name}} {{User.last_name}}</td>
+          <td class="align-middle">{{User.email}}</td>
+          <td class="align-middle">{{User.phone_number}}</td>
           {% if  User.is_active %}
-          <td><span class="badge badge-pill bg-success fs-6">Active</span></td>
+          <td class="align-middle"><span class="badge badge-pill bg-success fs-6">Active</span></td>
           {% else %}
-          <td><span class="badge badge-pill bg-danger fs-6"> blocked</span></td>
+          <td class="align-middle"><span class="badge badge-pill bg-danger fs-6"> blocked</span></td>
           {% endif %}
-          <td><div class="d-flex flex-row justify-content-center  align-items-center ">
+          <td class="align-middle"><div class="d-flex flex-row justify-content-center  align-items-center ">
           <a href="{% url 'deleteUser' User.id %}"><button type="button" class="btn btn-success px-3 p-0"><i class="bi bi-trash me-2"></i>Delete</button></a>
           {% if  User.is_active %}
           <a href="{% url 'blockUser'  User.id 'block' %}"><button type="button" class="btn btn-danger  ms-3 p-0 px-3"><i class="bi bi-slash-circle me-2"></i>Block</button></a>
