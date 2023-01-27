@@ -4,6 +4,7 @@ from Store .models import Product
 
 
 # Create your views here.
+
 def index(request):
     product=Product.objects.all().filter( is_available=True)
     context={
