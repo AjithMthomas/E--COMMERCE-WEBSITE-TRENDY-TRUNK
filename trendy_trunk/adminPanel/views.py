@@ -37,7 +37,7 @@ def logoutAdmin(request):
 
 
 def adminUsers(request):
-    Users=Account.objects.all()
+    Users=Account.objects.all().filter(is_admin=False)
     user_count=Users.count()
     context={
         'Users':Users,
@@ -51,13 +51,7 @@ def adminUsers(request):
 def deleteUser(request,id):
     user=Account.objects.get(id=id)
     user.delete()
-    Users=Account.objects.all()
-    user_count=Users.count()
-    context={
-        'Users':Users,
-        'user_count':user_count,
-    }
-    return render(request,'adminPanel/users.html',context)
+    return redirect('adminUsers')
 
 
 
@@ -69,20 +63,14 @@ def blockUser(request,id,action):
     elif action =='unblock':
         user.is_active=True
         user.save()
-    Users=Account.objects.all()
-    user_count=Users.count()
-    context={
-        'Users':Users,
-        'user_count':user_count,
-    }
-    return render(request,'adminPanel/users.html',context)
+    return redirect('adminUsers')
 
 
 def adminProducts(request):
     products=Product.objects.all()
     AdminProducts_count=products.count()
     context={
-        'poducts':products,
+        'products':products,
         'AdminProducts_count':AdminProducts_count,
     }
     return render(request,'adminPanel/adminProducts.html',context)
@@ -96,8 +84,24 @@ def list_unlistProduct(request,id,action):
     elif action == 'unlist':
         products.is_available=False
         products.save()
-    products=Product.objects.all()
+    return redirect('adminProducts')
+
+
+def adminSingleProduct(request,id):
+    singleProduct=Product.objects.get(id=id)
     context={
-        'products':products,
+        'singleProduct':singleProduct,
     }
-    return render(request,'adminPanel/adminProducts.html',context)
+    return render(request,'adminPanel/adminSingleProduct.html',context)
+
+
+def deleteSingleProdudct(request,id):
+    deleteProduct=Product.objects.get(id=id)
+    deleteProduct.delete()
+    return redirect('adminProducts')
+
+def adminCategory(request):
+    return render(request,'adminPanel/adminCategory.html')
+
+    
+

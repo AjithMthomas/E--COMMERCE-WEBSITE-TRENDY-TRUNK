@@ -79,16 +79,18 @@
                 <i class="bi bi-ticket fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Coupons</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="forms.html"> 
                 <i class="bi bi-bag-plus fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Orders</span></a></li>
-              <li class="sidebar-item"><a class="sidebar-link" href="#exampledropdownDropdown" data-bs-toggle="collapse"> 
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
+                <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
+              <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}" data-bs-toggle="collapse"> 
                 <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a>
                 <ul class="collapse list-unstyled " id="exampledropdownDropdown">
                   <li><a class="sidebar-link" href="#">Page</a></li>
                   <li><a class="sidebar-link" href="#">Page</a></li>
                   <li><a class="sidebar-link" href="#">Page</a></li>
                 </ul>
-              </li>
+              </li> -->
+            </ul>
           </nav>
-        </header>
     <!-- header ends -->
     <table  class="table table-dark table-striped">
       <thead>
@@ -114,7 +116,7 @@
           <td class="align-middle"><span class="badge badge-pill bg-danger fs-6"> blocked</span></td>
           {% endif %}
           <td class="align-middle"><div class="d-flex flex-row justify-content-center  align-items-center ">
-          <a href="{% url 'deleteUser' User.id %}"><button type="button" class="btn btn-success px-3 p-0"><i class="bi bi-trash me-2"></i>Delete</button></a>
+          <a href="{% url 'deleteUser' User.id %}"><button type="button" class="btn btn-danger px-3 p-0"><i class="bi bi-trash me-2"></i>Delete</button></a>
           {% if  User.is_active %}
           <a href="{% url 'blockUser'  User.id 'block' %}"><button type="button" class="btn btn-danger  ms-3 p-0 px-3"><i class="bi bi-slash-circle me-2"></i>Block</button></a>
           {% else %}

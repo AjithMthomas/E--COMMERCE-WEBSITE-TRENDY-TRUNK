@@ -48,9 +48,9 @@
           </button>
           </div>
           <ul class="list-inline mb-0">
-            <li class="list-inline-item logout px-lg-2"><button type="button" class="btn btn-info">
-              Total Products <span class="badge bg-danger">{{AdminProducts_count}}</span>
-            </button></li>
+            <li class="list-inline-item  px-lg-2"><a href="#"><button type="button" class="btn btn-danger">
+              Delete Product
+            </button></a></li>
             <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="{% url 'logoutAdmin' %}"> <span class="d-none d-sm-inline-block">Logout </span>
                     <svg class="svg-icon svg-icon-xs svg-icon-heavy">
                       <use xlink:href="#disable-1"> </use>
@@ -93,50 +93,9 @@
         </nav>
     <!-- header ends -->
     <!-- table starts -->
-    <div class="table-responsive">
-      <table  class="table table-dark table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Poduct Image</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Status</th>
-            <th scope="col">Price</th>
-            <th scope="col" class="text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for product in products %}
-          <tr>
-              <th scope="row" class="w-25"><img src="{{product.images.url}}" class="img-fluid w-50 h-25 w-md-25" alt=""></th>
-              <td class="align-middle">{{product.product_name}}</td>
-              <td class="align-middle">{{product.category}}</td>
-              <td class="align-middle">{{product.stock}}</td>
-              <td class="align-middle">
-                {% if product.is_available %}
-                <button type="button" class="btn btn-outline-success">listed</button>
-                {% else %}
-                <button type="button" class="btn btn-outline-danger">unlisted</button>
-                {% endif %}
-              </td>
-              <td class="align-middle">{{product.price}}</td>
-              <td class="align-middle">
-                <div class="d-flex flex-row justify-content-center  align-items-center">
-                  <a href="{% url 'adminSingleProduct' product.id %}"><button type="button" class="btn btn-outline-info "><i class="bi bi-eye-fill pe-1"></i>View</button></a>
-                  {% if product.is_available %}
-                  <a href="{% url 'list_unlistProduct' product.id 'unlist' %}"><button type="button" class="btn btn-outline-danger  ms-4"><i class="bi bi-toggle-off ">  <b class="ms-1">Unlist</b></i></button></a>
-                  {% else %}
-                  <a href="{% url 'list_unlistProduct' product.id 'list' %}"><button type="button" class="btn btn-outline-success  ms-4"><i class="bi bi-toggle-off ">  <b class="ms-1">list</b></i></button></a>
-                  {% endif %}
-                </div>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-  </div>  
-  <!-- table ends -->
+
+    
+    <!-- table ends -->
       <!-- footer starts -->
     <footer class="position-absolute bottom-0 bg-dash-dark-2 text-white text-center py-3 w-100 text-xs" id="footer">
     </footer>
