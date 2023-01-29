@@ -32,3 +32,4 @@ def Single_product(request,category_slug,product_slug):
         'single_product': single_product,
     }
     return render(request,'single_product.html',context)
+

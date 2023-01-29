@@ -3,6 +3,7 @@ from django.contrib import auth,messages
 from django.contrib.auth.decorators import login_required
 from accounts.models import Account
 from Store.models import Product
+from category.models import Category
 
 # Create your views here.
 def adminPanel(request):
@@ -100,8 +101,85 @@ def deleteSingleProdudct(request,id):
     deleteProduct.delete()
     return redirect('adminProducts')
 
-def adminCategory(request):
-    return render(request,'adminPanel/adminCategory.html')
 
+def adminCategory(request):
+    categories= Category.objects.all()
+    categories_count=categories.count()
+    context={
+        'categories':categories,
+        'categories_count':categories_count
+    }
+    return render(request,'adminPanel/adminCategory.html',context)
+
+def deleteCategory(request,id):
+    category=Category.objects.get(id=id)
+    category.delete()
+    return redirect('adminCategory')
     
 
+
+def addProductPage(request):
+    return render(request,'adminPanel/addProduct.html')
+
+def addProduct(request):
+    categories=Category.objects.all()
+    if request.method == 'POST':
+        product_name  = request.POST('product_name')
+        slug          = request.POST('slug')
+        description   = request.POST('description')
+        price         = request.POST('price')
+        image         = request.POST('image')
+        stock         = request.POST('stock')
+        is_available  = request.POST('is_available')
+        category_id   = request.POST('category')
+        category      = Category.objects.all(id=category_id)
+
+        Product.objects.create(
+            product_name=product_name,
+            slug=slug,
+            description=description,
+            price=price,
+            images=image,
+            stock=stock,
+            is_available=is_available,
+            category=category,
+        )
+        context={
+            'categories':categories,
+            'message':'product Added'
+        }
+        return render(request,'adminPanel/addProduct.html',context)
+    else:
+        context={
+            'categories':categories,
+            'message':'product not added'
+        }
+        return render(request,'adminPanel/addProduct.html',context)
+    
+    
+    
+def addCategoryPage(request):
+    return render(request,'adminPanel/addCategory.html')
+
+
+def addCategory(request):
+    if request.method == 'POST':
+        category_name = request.POST['category_name']
+        slug = request.POST['slug']
+        description = request.POST['description']
+        Cat_image = request.POST['Cat_image']
+        is_available = request.POST.get('is_available', False)
+
+        Category.objects.create(
+            category_name=category_name,
+            slug=slug,
+            description=description,
+            Cat_image=Cat_image,
+            is_available=is_available
+        )
+        return redirect('adminCategory')
+
+    return render(request,'adminPanel/addCategory.html')
+
+
+        

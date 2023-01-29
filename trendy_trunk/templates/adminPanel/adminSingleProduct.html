@@ -48,7 +48,7 @@
           </button>
           </div>
           <ul class="list-inline mb-0">
-            <li class="list-inline-item  px-lg-2"><a href="#"><button type="button" class="btn btn-danger">
+            <li class="list-inline-item logout px-lg-2"><a href="{% url 'deleteSingleProdudct' singleProduct.id %}"><button type="button" class="btn btn-danger">
               Delete Product
             </button></a></li>
             <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="{% url 'logoutAdmin' %}"> <span class="d-none d-sm-inline-block">Logout </span>
@@ -81,19 +81,25 @@
                 <i class="bi bi-bag-plus fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Orders</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
                 <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
-              <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}" data-bs-toggle="collapse"> 
-                <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a>
-                <ul class="collapse list-unstyled " id="exampledropdownDropdown">
-                  <li><a class="sidebar-link" href="#">Page</a></li>
-                  <li><a class="sidebar-link" href="#">Page</a></li>
-                  <li><a class="sidebar-link" href="#">Page</a></li>
-                </ul>
-              </li> -->
-        </ul>
         </nav>
     <!-- header ends -->
     <!-- table starts -->
-
+    <div class="row col-12 ms-3 mt-3">
+        <div class="col-6 h-50">
+            <img src="{{ singleProduct.images.url }}" class="card-img-top w-75"  alt="no"><br><br>
+            <p> {{ singleProduct.description }}</p>
+        </div>
+        <div class="col-6 d-flex flex-column justify-content-center align-items-start mb-5">
+            <h1 class="card-title text-danger">{{ singleProduct.product_name }}</h1><br>
+            <h5 class="card-title">Price :  INR <b class="text-info">{{ singleProduct.price }}</b></h5><br>
+            <h4> CATEGORY : {{ singleProduct.category }}</h4><br>
+            <h5> STOCK : {{ singleProduct.stock }}</h5><br>
+            <h5> CREATED DATE : {{ singleProduct.created_date }}</h5><br>
+            <h5> MODIFIED DATE : {{ singleProduct.modified_date }}</h5><br>
+            <p class="card-text">{{ singleProduct.description }}</p><br>
+            <a href="{% url 'updateProduct' id %}" class="btn btn-primary w-50">Edit Product</a>
+        </div> 
+    </div>
     
     <!-- table ends -->
       <!-- footer starts -->

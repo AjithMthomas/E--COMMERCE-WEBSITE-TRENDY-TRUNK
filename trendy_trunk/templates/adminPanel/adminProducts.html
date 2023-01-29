@@ -51,6 +51,7 @@
             <li class="list-inline-item logout px-lg-2"><button type="button" class="btn btn-info">
               Total Products <span class="badge bg-danger">{{AdminProducts_count}}</span>
             </button></li>
+            <li class="list-inline-item logout px-lg-2"><a href="{% url 'addProductPage' %}"><button type="button" class="btn btn-info"><i class="bi bi-plus-circle-fill text-danger"></i><b class="ms-2">Add Product</b></button></a></li>
             <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="{% url 'logoutAdmin' %}"> <span class="d-none d-sm-inline-block">Logout </span>
                     <svg class="svg-icon svg-icon-xs svg-icon-heavy">
                       <use xlink:href="#disable-1"> </use>
@@ -81,14 +82,6 @@
                 <i class="bi bi-bag-plus fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Orders</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
                 <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
-              <!-- <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}" data-bs-toggle="collapse"> 
-                <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a>
-                <ul class="collapse list-unstyled " id="exampledropdownDropdown">
-                  <li><a class="sidebar-link" href="#">Page</a></li>
-                  <li><a class="sidebar-link" href="#">Page</a></li>
-                  <li><a class="sidebar-link" href="#">Page</a></li>
-                </ul>
-              </li> -->
         </ul>
         </nav>
     <!-- header ends -->

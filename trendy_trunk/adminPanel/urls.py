@@ -10,7 +10,10 @@ urlpatterns = [
     path('adminProducts/',views.adminProducts,name='adminProducts'),
     path('adminSingleProduct/<int:id>/',views.adminSingleProduct,name='adminSingleProduct'),
     path('adminCategory/',views.adminCategory,name='adminCategory'),
+    path('addProductPage/',views.addProductPage,name='addProductPage'),
+    path('addCategoryPage/',views.addCategoryPage,name='addCategoryPage'),
 
+    
 
     # functions
     path('loginAdmin/',views.loginAdmin,name='loginAdmin'),
@@ -19,7 +22,8 @@ urlpatterns = [
     path('blockUser/<int:id>/<str:action>/',views.blockUser,name='blockUser'),
     path('list_unlistProduct/<int:id>/<str:action>/',views.list_unlistProduct,name='list_unlistProduct'),
     path('deleteSingleProdudct/<int:id>/',views.deleteSingleProdudct,name='deleteSingleProdudct'),
-
-    
+    path('deleteCategory/<int:id>/',views.deleteCategory,name='deleteCategory'),
+    path('addProduct/',views.addProduct,name='addProduct'),
+    path('addCategory/',views.addCategory,name='addCategory'),
 
 ]
