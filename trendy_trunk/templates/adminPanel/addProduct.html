@@ -56,11 +56,11 @@
         </div>
       </nav>
     </header>
-    <div class="d-flex align-items-stretch">
+    <div class="d-flex align-items-stretch  h-100">
       <!-- Sidebar Navigation-->
       <nav id="sidebar">
         <!-- Sidebar Header-->
-        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="img/avatar-6.jpg" alt="...">
+        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="{%static 'img/avatar-6.jpg' %}" alt="...">
           <div class="ms-3 title">
             <h1 class="h5 mb-1">{{user.first_name}} {{user.last_name}}</h1>
           </div>
@@ -78,16 +78,13 @@
                 <i class="bi bi-bag-plus fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Orders</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
                 <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
-                <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
-                  <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
-                  <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
-                    <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
+                
         </ul>
         </nav>
     <!-- header ends -->
      <!-- formstarts -->
      <div class="w-100 h-100 d-flex  alien-items-center justify-content-center ">
-     <form method="POST" class="w-75 mt-4" action="{% url 'addProduct' %}">
+     <form method="POST" class="w-75 h-100 mt-4" action="{% url 'addProduct' %}" enctype="multipart/form-data" >
       {% csrf_token %}
       <h3><b class="text-danger ">Add Product</b></h3>
         <div class="form-group">
@@ -115,14 +112,14 @@
           <input type="number" class="form-control" id="stock" name="stock" required>
         </div>
         <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="is_available" name="is_available" checked>
+          <input type="checkbox" class="form-check-input" id="is_available" name="is_available" >
           <label class="form-check-label" for="is_available">Available</label>
         </div>
         <div class="form-group">
           <label for="category">Category:</label>
           <select class="form-control" id="category" name="category" required>
-            {% for i in categories %}
-              <option value="{{i.id}}">{{i.category_name}}</option>
+            {% for category in categories %}
+            <option value="{{category.id}}">{{category.category_name}}</option>
             {% endfor %}
           </select>
         </div><br>
@@ -133,11 +130,8 @@
       {% endif %}
     </div>
      <!-- form ends -->
-      <!-- footer starts -->
-    <footer class="position-absolute bottom-0 bg-dash-dark-2 text-white text-center py-3 w-100 text-xs" id="footer">
-    </footer>
-      </div>
-    </div>
+    
+    </div>  
    <!-- JavaScript files-->
    <script src="{% static 'adminPanel/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
    <script src="{% static 'adminPanel/vendor/just-validate/js/just-validate.min.js' %}"></script>

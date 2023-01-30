@@ -47,6 +47,17 @@
                 </svg>
           </button>
           </div>
+          {% if messages %}
+          {% for message in messages %}
+          <div {% if message.tags %} class="  alert alert-{{ message.tags }}"{% endif %} role="alert">
+              <button type="button" class="close" data-dismiss="alert" onclick="this.parentNode.remove()">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+                  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:{% endif %}
+                  {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
           <ul class="list-inline mb-0">
             <li class="list-inline-item logout px-lg-2"><button type="button" class="btn btn-info">
               Total Products <span class="badge bg-danger">{{AdminProducts_count}}</span>
@@ -128,13 +139,11 @@
           {% endfor %}
         </tbody>
       </table>
+     
   </div>  
   <!-- table ends -->
-      <!-- footer starts -->
-    <footer class="position-absolute bottom-0 bg-dash-dark-2 text-white text-center py-3 w-100 text-xs" id="footer">
-    </footer>
+ 
       </div>
-    </div>
    <!-- JavaScript files-->
    <script src="{% static 'adminPanel/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
    <script src="{% static 'adminPanel/vendor/just-validate/js/just-validate.min.js' %}"></script>

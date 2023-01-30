@@ -97,7 +97,7 @@
             <h5> CREATED DATE : {{ singleProduct.created_date }}</h5><br>
             <h5> MODIFIED DATE : {{ singleProduct.modified_date }}</h5><br>
             <p class="card-text">{{ singleProduct.description }}</p><br>
-            <a href="{% url 'updateProduct' id %}" class="btn btn-primary w-50">Edit Product</a>
+            <a href="{% url 'updateProduct' singleProduct.id %}" class="btn btn-primary w-50">Edit Product</a>
         </div> 
     </div>
     

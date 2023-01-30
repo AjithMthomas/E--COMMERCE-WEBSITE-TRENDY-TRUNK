@@ -5,6 +5,7 @@ from accounts.models import Account
 from Store.models import Product
 from category.models import Category
 
+
 # Create your views here.
 def adminPanel(request):
     return render(request,'adminPanel/login.html')
@@ -30,7 +31,18 @@ def loginAdmin(request):
 
 @login_required(login_url='login')
 def adminIndex(request):
-    return render(request,'adminPanel/index.html')
+    Users=Account.objects.all().filter(is_admin=False)
+    Users_count=Users.count()     
+    products=Product.objects.all()
+    products_count=products.count()
+    categories=Category.objects.all()
+    categories_count=categories.count()
+    context={
+        'Users_count':Users_count,
+        'products_count':products_count,
+        'categories_count':categories_count
+    }
+    return render(request,'adminPanel/index.html',context)
 
 
 def logoutAdmin(request):
@@ -119,20 +131,24 @@ def deleteCategory(request,id):
 
 
 def addProductPage(request):
-    return render(request,'adminPanel/addProduct.html')
+    categories=Category.objects.all()
+    context={
+        'categories':categories,
+        
+    }
+    return render(request,'adminPanel/addProduct.html',context)
 
 def addProduct(request):
-    categories=Category.objects.all()
     if request.method == 'POST':
-        product_name  = request.POST('product_name')
-        slug          = request.POST('slug')
-        description   = request.POST('description')
-        price         = request.POST('price')
-        image         = request.POST('image')
-        stock         = request.POST('stock')
-        is_available  = request.POST('is_available')
-        category_id   = request.POST('category')
-        category      = Category.objects.all(id=category_id)
+        product_name  = request.POST['product_name']
+        slug          = request.POST['slug']
+        description   = request.POST['description']
+        price         = request.POST['price']
+        image         = request.FILES['image']
+        stock         = request.POST['stock']
+        # is_available  = request.POST.get('is_available', False)
+        category_id   = request.POST['category']
+        category      = Category.objects.get(id=category_id)
 
         Product.objects.create(
             product_name=product_name,
@@ -141,21 +157,13 @@ def addProduct(request):
             price=price,
             images=image,
             stock=stock,
-            is_available=is_available,
+            # is_available=is_available,
             category=category,
         )
-        context={
-            'categories':categories,
-            'message':'product Added'
-        }
-        return render(request,'adminPanel/addProduct.html',context)
-    else:
-        context={
-            'categories':categories,
-            'message':'product not added'
-        }
-        return render(request,'adminPanel/addProduct.html',context)
-    
+        return redirect('adminProducts')
+   
+    return render(request,'adminPanel/addProduct.html')
+
     
     
 def addCategoryPage(request):
@@ -167,7 +175,7 @@ def addCategory(request):
         category_name = request.POST['category_name']
         slug = request.POST['slug']
         description = request.POST['description']
-        Cat_image = request.POST['Cat_image']
+        Cat_image = request.FILES['Cat_image']
         is_available = request.POST.get('is_available', False)
 
         Category.objects.create(
@@ -182,4 +190,40 @@ def addCategory(request):
     return render(request,'adminPanel/addCategory.html')
 
 
+
+def upadateCategory(request,id):
+    category = Category.objects.get(id=id)
+    if request.method == 'POST':
+        category.category_name = request.POST.get('category_name')
+        category.slug = request.POST.get('slug')
+        category.description = request.POST.get('description')
+        category.Cat_image = request.FILES.get('Cat_image')
+        category.is_available = request.POST.get('is_available') == 'on'
+        category.save()
+        messages.success(request,' Category added')
+        return redirect('adminCategory')
+    return render(request,'adminPanel/upadateCategory.html',{'category': category})
+   
         
+
+def updateProduct(request,id):
+    categeries=Category.objects.all()
+    product=Product.objects.get(id=id)
+    if request.method == 'POST':
+        product.images=request.FILES.get('images')
+        product.product_name=request.POST.get('product_name')
+        product.slug=request.POST.get('slug')
+        product.description=request.POST.get('description')
+        product.price=request.POST.get('price')
+        product.stock=request.POST.get('stock')
+        product.is_available=request.POST.get('is_available')=='on'
+        category_id=request.POST['category']
+        product.category=Category.objects.get(id=category_id)
+        product.save()
+        messages.success(request,'product added')
+        return redirect('adminProducts') 
+    context={
+        'product':product,
+        'categeries':categeries
+    }
+    return render(request,'adminPanel/updateProduct.html',context)

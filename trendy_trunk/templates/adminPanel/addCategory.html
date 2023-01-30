@@ -83,7 +83,7 @@
     <!-- header ends -->
     <!-- form starts -->
         <div class="w-100 h-100 d-flex  alien-items-center justify-content-center  mt-2"> 
-        <form method="POST" action="{% url 'addCategory' %}" class="w-75 mt-4">
+        <form method="POST" action="{% url 'addCategory' %}" class="w-75 mt-4" enctype="multipart/form-data">
             {% csrf_token %}
             <h3><b class="text-danger">Add Category</b></h3>
             <div class="form-group">

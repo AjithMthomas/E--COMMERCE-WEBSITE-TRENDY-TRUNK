@@ -12,6 +12,8 @@ urlpatterns = [
     path('adminCategory/',views.adminCategory,name='adminCategory'),
     path('addProductPage/',views.addProductPage,name='addProductPage'),
     path('addCategoryPage/',views.addCategoryPage,name='addCategoryPage'),
+    path('upadateCategory/<int:id>/',views.upadateCategory,name='upadateCategory'),
+    path('updateProduct/<int:id>/',views.updateProduct,name='updateProduct'),
 
     
 
