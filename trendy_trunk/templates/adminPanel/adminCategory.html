@@ -47,21 +47,21 @@
                 </svg>
           </button>
           </div>
+          {% if messages %}
+          {% for message in messages %}
+          <div {% if message.tags %} class="  alert alert-{{ message.tags }}"{% endif %} role="alert">
+              <button type="button" class="close" data-dismiss="alert" onclick="this.parentNode.remove()">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+                  {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:{% endif %}
+                  {{ message }}
+          </div>
+          {% endfor %}
+         {% endif %}
           <ul class="list-inline mb-0">
             <li class="list-inline-item logout px-lg-2"><button type="button" class="btn btn-info">
               Total Category <span class="badge bg-danger">{{categories_count}}</span>
             </button></li>
-            {% if messages %}
-            {% for message in messages %}
-            <div {% if message.tags %} class="  alert alert-{{ message.tags }}"{% endif %} role="alert">
-                <button type="button" class="close" data-dismiss="alert" onclick="this.parentNode.remove()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error:{% endif %}
-                    {{ message }}
-            </div>
-            {% endfor %}
-        {% endif %}
             <li class="list-inline-item logout px-lg-2"><a href="{% url 'addCategoryPage' %}"><button type="button" class="btn btn-info"><i class="bi bi-plus-circle-fill text-danger"></i><b class="ms-2">Add Category</b></button></a></li>
             <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="{% url 'logoutAdmin' %}"> <span class="d-none d-sm-inline-block">Logout </span>
                     <svg class="svg-icon svg-icon-xs svg-icon-heavy">

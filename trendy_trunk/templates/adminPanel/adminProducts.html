@@ -57,7 +57,7 @@
                   {{ message }}
           </div>
           {% endfor %}
-      {% endif %}
+         {% endif %}
           <ul class="list-inline mb-0">
             <li class="list-inline-item logout px-lg-2"><button type="button" class="btn btn-info">
               Total Products <span class="badge bg-danger">{{AdminProducts_count}}</span>
@@ -139,7 +139,31 @@
           {% endfor %}
         </tbody>
       </table>
-     
+          <!-- Pagination -->
+          <nav aria-label="navigation">
+            {% if products.has_other_pages %}
+          <ul class="pagination mt-50 mb-70">
+              {% if products.has_previous %}
+              <li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+              {% else %}
+              <li class="page-item disabled"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+              {% endif %}
+              {% for i in products.paginator.page_range %}
+              {% if products.number == i %}
+              <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+              {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+              {% endif %}
+              {% endfor %}
+             
+              {% if products.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
+              {% else%}
+              <li class="page-item disabled"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li>
+              {% endif %}
+          </ul>
+          {% endif %} 
+      </nav>
   </div>  
   <!-- table ends -->
  

@@ -3,234 +3,194 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Title  -->
-    <title>trendy trunk</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Title  -->
+  <title>trendy trunk</title>
 
-    <!-- Favicon  -->
-    <link rel="icon" href="../static/img/core-img/trendy trunk logo.png">
+  <!-- Favicon  -->
+  <link rel="icon" href="../static/img/core-img/trendy trunk logo.png">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Core Style CSS -->
-    <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
-    <link rel="stylesheet" href="https://kit.fontawesome.com/8cbd89b927.css" crossorigin="anonymous">
-  
+  <!-- Core Style CSS -->
+  <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cart_wishlist.css' %}">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/8cbd89b927.css" crossorigin="anonymous">
+
 
 
 </head>
 
-<body >
-   <!-- ##### Header Area Start ##### -->
-    <header class="header_area">
-        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
-            <!-- Classy Menu -->
-            <nav class="classy-navbar" id="essenceNav">
-                <!-- Logo -->
-                <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
-                <!-- Navbar Toggler -->
-                <div class="classy-navbar-toggler">
-                    <span class="navbarToggler"><span></span><span></span><span></span></span>
-                </div>
-                <!-- Menu -->
-                <div class="classy-menu">
-                    <!-- close btn -->
-                    <div class="classycloseIcon">
-                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                    </div>
-                    <!-- Nav Start -->
-                    <div class="classynav">
-                        <ul>
-                            <li><a href="{% url 'shop' %}">Shop</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Women's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Rompers</a></li>
-                                        <li><a href="shop.html">Bras &amp; Panties</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Men's Collection</li>
-                                        <li><a href="shop.html">T-Shirts</a></li>
-                                        <li><a href="shop.html">Polo</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Kid's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <img src="img/bg-img/bg-6.jpg" alt="">
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="#">Shop</a></li>
-                                    <li><a href="single-product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="single-blog.html">Single Blog</a></li>
-                                    <li><a href="regular-page.html">Regular Page</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    <!-- Nav End -->
-                </div>
-            </nav>
-
-            <!-- Header Meta Data -->
-            <!-- signin/signout-->
-            <div class="header-meta d-flex clearfix justify-content-end">
-                {% if user.id is not None %}
-                 <div class="user-login-info">
-                    <a href="{% url 'logout' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Logout</a>
-                </div>
-                {% else %}
-                <div class="user-login-info">
-                    <a href="{% url 'login' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Login</a>
-                </div>
-                {% endif %}
-                <!-- Search Area -->
-                <div class="search-area">
-                    <form action="#" method="post">
-                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-                <!-- Favourite Area -->
-                <div class="favourite-area">
-                    <a href="#"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
-                </div>
-                <!-- User Login Info -->
-                <div class="user-login-info">
-                    <a href="{% url 'user_account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
-                </div>
-                <!-- Cart Area -->
-                <div class="cart-area">
-                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
-                </div>
-            </div>
-
+<body>
+  <!-- ##### Header Area Start ##### -->
+  <header class="header_area">
+    <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+      <!-- Classy Menu -->
+      <nav class="classy-navbar" id="essenceNav">
+        <!-- Logo -->
+        <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt=""
+            style="height: 75px;width: 130px;"></a>
+        <!-- Navbar Toggler -->
+        <div class="classy-navbar-toggler">
+          <span class="navbarToggler"><span></span><span></span><span></span></span>
         </div>
-    </header> 
-    <!-- ##### Header Area End ##### -->
-    <!-- cart area start -->
+        <!-- Menu -->
+        <div class="classy-menu">
+          <!-- close btn -->
+          <div class="classycloseIcon">
+            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+          </div>
+          <!-- Nav Start -->
+          <div class="classynav">
+            <ul>
+              <li><a href="{% url 'shop' %}">Shop</a>
+                <div class="dropdown">
+                  <ul class="single-mega cn-col-4">
+                    <li><a href="{% url 'shop' %}">All Products</a></li>
+                    {% for category in links %}
+                    <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
+                    {% endfor %}
+
+                  </ul>
+                </div>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <!-- Nav End -->
+        </div>
+      </nav>
+
+      <!-- Header Meta Data -->
+      <!-- signin/signout-->
+      <div class="header-meta d-flex clearfix justify-content-end">
+        {% if user.id is not None %}
+        <div class="user-login-info">
+          <a href="{% url 'logout' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Logout</a>
+        </div>
+        {% else %}
+        <div class="user-login-info">
+          <a href="{% url 'login' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Login</a>
+        </div>
+        {% endif %}
+        <!-- Search Area -->
+        <div class="search-area">
+          <form action="{% url 'search' %}" method="GET">
+            <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+        </div>
+        <!-- Favourite Area -->
+        <div class="favourite-area">
+          <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+        </div>
+        <!-- User Login Info -->
+        <div class="user-login-info">
+          <a href="{% url 'user_account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
+        </div>
+        <!-- Cart Area -->
+        <div class="cart-area">
+          <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt="">
+            <span>{{item_count}}</span></a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+  <!-- ##### Header Area End ##### -->
+  <!-- cart area start -->
     <section class="h-100 h-custom" style="background-color: #d8d7de;">
-      <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12">
-            <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-              <div class="card-body p-0">
-                <div class="row g-0">
-                  <div class="col-lg-8">
-                    <div class="p-5">
-                      <div class="d-flex justify-content-between align-items-center mb-5">
-                        <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                        <h6 class="mb-0 text-muted">3 items</h6>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <h6 class="mb-0 text-muted">{{item_count}} item</h6>
+                    </div>
+                    {% for i in items %}
+                    <hr class="my-4">
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img src="{{i.product.images.url}}" class="img-fluid rounded-3" alt="Cotton T-shirt">
                       </div>
-                      <hr class="my-4">
-    
-                      <div class="row mb-4 d-flex justify-content-between align-items-center">
-                        <div class="col-md-2 col-lg-2 col-xl-2">
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                            class="img-fluid rounded-3" alt="Cotton T-shirt">
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-3">
-                          <h6 class="text-muted">Shirt</h6>
-                          <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <button class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                            <i class="fas fa-minus"></i>
-                          </button>
-    
-                          <input id="form1" min="0" name="quantity" value="1" type="number"
-                            class="form-control form-control-sm" style="width: 50px;" />
-    
-                          <button class="btn btn-link px-2"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h6 class="mb-0">€ 44.00</h6>
-                        </div>
-                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                        </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <h6 class="text-black mb-0">{{i.product.product_name}}</h6>
                       </div>
-    
-                      <hr class="my-4">
-                      <div class="pt-5">
-                        <h6 class="mb-0"><a href="{% url 'shop' %}" class="text-primary"><i
-                              class="fas fa-long-arrow-alt-left me-2"></i> >Back to shop</b></a></h6>
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        <button class="btn btn-link px-2">
+                          <a href="{% url 'CartQuantity' i.id 'decrease' %}"><i class="fas fa-minus text-dark"></i></a>
+                        </button>
+                        <input id="form1" min="0" name="quantity" value="{{i.quantity}}" type="number"
+                          class="form-control form-control-sm" style="width: 50px;" disabled />
+                        <button class="btn btn-link px-2">
+                          <a href="{% url 'CartQuantity' i.id 'increase' %}"><i class="fas fa-plus  text-dark"></i></a>
+                        </button>
                       </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                        <h6 class="mb-0">${{i.total}}</h6>
+                      </div>
+                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                        <a href="{% url 'RemoveFromCart' i.id %}" class="text-muted"><i class="fas fa-times"></i></a>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    <hr class="my-4">
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="{% url 'shop' %}" class="text-primary"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i> >Back to shop</b></a></h6>
                     </div>
                   </div>
-                  <div class="col-lg-4 bg-grey">
-                    <div class="p-5">
-                      <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                      <hr class="my-4">
-    
-                      <div class="d-flex justify-content-between mb-4">
-                        <h5 class="text-uppercase">items 3</h5>
-                        <h5>€ 132.00</h5>
-                      </div>
-    
-                      <h5 class="text-uppercase mb-3">Shipping</h5>
-    
-                      <div class="mb-4 pb-2">
-                        <select class="select">
-                          <option value="1">Standard-Delivery- €5.00</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                          <option value="4">Four</option>
-                        </select>
-                      </div><br>
-    
-                      
-    
-                      <div class="mb-5">
-                        <h5 class="text-uppercase mb-3">Give code</h5>
-                        <div class="form-outline"><h5 class="text-uppercase mb-3">
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">items {{item_count}}</h5>
+                      <h5>$ {{total_price}}</h5>
+                    </div>
+
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+
+                    <div class="mb-4 pb-2">
+                      <select class="select">
+                        <option value="1">Standard-Delivery- €5.00</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="4">Four</option>
+                      </select>
+                    </div><br>
+                    <div class="mb-5">
+                      <h5 class="text-uppercase mb-3">Give code</h5>
+                      <div class="form-outline">
+                        <h5 class="text-uppercase mb-3">
                           <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
                           <label class="form-label" for="form3Examplea2">Enter your code</label>
-                        </div>
                       </div>
-    
-                      <hr class="my-4">
-    
-                      <div class="d-flex justify-content-between mb-5">
-                        <h5 class="text-uppercase">Total price</h5>
-                        <h5>€ 137.00</h5>
-                      </div>
-    
-                      <button type="button" class="btn btn-dark btn-block btn-lg"
-                        data-mdb-ripple-color="dark">Register</button>
-    
                     </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5>€ 137.00</h5>
+                    </div>
+
+                    <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Register</button>
+
                   </div>
                 </div>
               </div>
@@ -238,101 +198,111 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
     <!-- cart area end -->
-    <!-- ##### Footer Area Start ##### -->
-      <footer class="footer_area clearfix">
-        <div class="container">
-            <div class="row">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area d-flex mb-30">
-                        <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            <a href="#"><img src="img/core-img/logo2.png" alt=""></a>
-                        </div>
-                        <!-- Footer Menu -->
-                        <div class="footer_menu">
-                            <ul>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area mb-30">
-                        <ul class="footer_widget_menu">
-                            <li><a href="#">Order Status</a></li>
-                            <li><a href="#">Payment Options</a></li>
-                            <li><a href="#">Shipping and Delivery</a></li>
-                            <li><a href="#">Guides</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Use</a></li>
-                        </ul>
-                    </div>
-                </div>
+  <!-- ##### Footer Area Start ##### -->
+  <footer class="footer_area clearfix">
+    <div class="container">
+      <div class="row">
+        <!-- Single Widget Area -->
+        <div class="col-12 col-md-6">
+          <div class="single_widget_area d-flex mb-30">
+            <!-- Logo -->
+            <div class="footer-logo mr-50">
+              <a href="#"><img src="img/core-img/logo2.png" alt=""></a>
             </div>
-
-            <div class="row align-items-end">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area">
-                        <div class="footer_heading mb-30">
-                            <h6>Subscribe</h6>
-                        </div>
-                        <div class="subscribtion_form">
-                            <form action="#" method="post">
-                                <input type="email" name="mail" class="mail" placeholder="Your email here">
-                                <button type="submit" class="submit"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
-                    <div class="single_widget_area">
-                        <div class="footer_social_area">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <!-- Footer Menu -->
+            <div class="footer_menu">
+              <ul>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
             </div>
-
-<div class="row mt-5">
-                <div class="col-md-12 text-center">
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>, distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-            </div>
-
+          </div>
         </div>
-    </footer>
-    <!-- ##### Footer Area End ##### -->
+        <!-- Single Widget Area -->
+        <div class="col-12 col-md-6">
+          <div class="single_widget_area mb-30">
+            <ul class="footer_widget_menu">
+              <li><a href="#">Order Status</a></li>
+              <li><a href="#">Payment Options</a></li>
+              <li><a href="#">Shipping and Delivery</a></li>
+              <li><a href="#">Guides</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
-    <!-- Popper js -->
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <!-- Bootstrap js -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <!-- Plugins js -->
-    <script src="{% static 'js/plugins.js' %}"></script>
-    <!-- Classy Nav js -->
-    <script src="{% static 'js/classy-nav.min.js' %}"></script>
-    <!-- Active js -->
-    <script src="{% static 'js/active.js' %}"></script>
-    <!-- font auesome -->
-    <script src="https://kit.fontawesome.com/8cbd89b927.js" crossorigin="anonymous"></script>
+      <div class="row align-items-end">
+        <!-- Single Widget Area -->
+        <div class="col-12 col-md-6">
+          <div class="single_widget_area">
+            <div class="footer_heading mb-30">
+              <h6>Subscribe</h6>
+            </div>
+            <div class="subscribtion_form">
+              <form action="#" method="post">
+                <input type="email" name="mail" class="mail" placeholder="Your email here">
+                <button type="submit" class="submit"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Single Widget Area -->
+        <div class="col-12 col-md-6">
+          <div class="single_widget_area">
+            <div class="footer_social_area">
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"
+                  aria-hidden="true"></i></a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"
+                  aria-hidden="true"></i></a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"
+                  aria-hidden="true"></i></a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest"
+                  aria-hidden="true"></i></a>
+              <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play"
+                  aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-12 text-center">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i
+              class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+              target="_blank">Colorlib</a>, distributed by <a href="https://themewagon.com/"
+              target="_blank">ThemeWagon</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <!-- ##### Footer Area End ##### -->
+
+  <!-- jQuery (Necessary for All JavaScript Plugins) -->
+  <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+  <!-- Popper js -->
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- Plugins js -->
+  <script src="{% static 'js/plugins.js' %}"></script>
+  <!-- Classy Nav js -->
+  <script src="{% static 'js/classy-nav.min.js' %}"></script>
+  <!-- Active js -->
+  <script src="{% static 'js/active.js' %}"></script>
+  <!-- font auesome -->
+  <script src="https://kit.fontawesome.com/8cbd89b927.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

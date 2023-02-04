@@ -1,14 +1,24 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from Store .models import Product
+from cart.models import CartcartItem,Wishlist
 
 
 # Create your views here.
 
 def index(request):
+    user = request.user
+    user_name = user.username
+    items=CartcartItem.objects.filter(user=user_name)
+    item_count = items.count()
+    users=request.user.id
+    wishlistItems=Wishlist.objects.filter(user=users)
+    wishlistItems_count=wishlistItems.count()
     product=Product.objects.all().filter( is_available=True)
     context={
-        'products':product
+        'products':product,
+        'item_count':item_count,
+        'wishlistItems_count':wishlistItems_count,
     }
     return render(request,'index.html',context)
 

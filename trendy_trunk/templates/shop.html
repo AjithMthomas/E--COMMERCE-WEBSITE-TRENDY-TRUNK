@@ -45,32 +45,15 @@
                 <div class="classynav">
                     <ul>
                         <li><a href="{% url 'shop' %}">Shop</a>
-                            <div class="megamenu">
+                            <div class="dropdown">
                                 <ul class="single-mega cn-col-4">
-                                    <li class="title">Women's Collection</li>
-                                    <li><a href="{% url 'shop' %}">All Products</a></li>
+                                  <li><a href="{% url 'shop' %}">All Products</a></li>
                                     {% for category in links %}
                                     <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
                                     {% endfor %}
                                     
                                 </ul>
-
-                                <div class="single-mega cn-col-4">
-                                    <img src="img/bg-img/bg-6.jpg" alt="">
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="{% url 'shop' %}">Shop</a></li>
-                                <li><a href="single-product-details.html">Product Details</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="single-blog.html">Single Blog</a></li>
-                                <li><a href="regular-page.html">Regular Page</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
+                             </div>
                         </li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -94,14 +77,14 @@
             {% endif %}
             <!-- Search Area -->
             <div class="search-area">
-                <form action="#" method="post">
+                <form action="{% url 'search'%}" method="GET">
                     <input type="search" name="search" id="headerSearch" placeholder="Type for search">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
             <!-- Favourite Area -->
             <div class="favourite-area">
-                <a href="#"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+                <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
             </div>
             <!-- User Login Info -->
             <div class="user-login-info">
@@ -123,7 +106,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="page-title text-center">
-                        <h2>dresses</h2>
+                        <h2>Products</h2>
                     </div>
                 </div>
             </div>
@@ -197,22 +180,7 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget brands mb-50">
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Brands</p>
-                            <div class="widget-desc">
-                                <ul>
-                                    <li><a href="#">Asos</a></li>
-                                    <li><a href="#">Mango</a></li>
-                                    <li><a href="#">River Island</a></li>
-                                    <li><a href="#">Topshop</a></li>
-                                    <li><a href="#">Zara</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                   </div>
                 </div>
 
                 <div class="col-12 col-md-8 col-lg-9">
@@ -242,6 +210,7 @@
                         </div>
 
                         <div class="row">
+                            {%if products%}
                             {% for i in products %}
                             <!-- Single Product -->
                             <div class="col-12 col-sm-6 col-lg-4">
@@ -258,7 +227,7 @@
                                         </div>
                                         <!-- Favourite -->
                                         <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
+                                            <a href="{% url 'addToWishlist' i.id %}" class="favme fa fa-heart"></a>
                                         </div>
                                     </div>
 
@@ -274,26 +243,42 @@
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
                                             <div class="add-to-cart-btn">
-                                                <a href="#" class="btn essence-btn">Add to Cart</a>
+                                                <a href="{% url 'addtocart' i.id %}" class="btn essence-btn">Add to Cart</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
+                            {% else %}
+                            <h2 class="text-danger ml-2">No Products found </h2>
+                            {% endif%}
                         </div>
                     </div>
                     <!-- Pagination -->
                     <nav aria-label="navigation">
+                          {% if products.has_other_pages %}
                         <ul class="pagination mt-50 mb-70">
-                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">21</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                            {% if products.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{products.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+                            {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                            {% endif %}
+                            {% for i in products.paginator.page_range %}
+                            {% if products.number == i %}
+                            <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                           
+                            {% if products.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
+                            {% else%}
+                            <li class="page-item disabled"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li>
+                            {% endif %}
                         </ul>
+                        {% endif %} 
                     </nav>
                 </div>
             </div>

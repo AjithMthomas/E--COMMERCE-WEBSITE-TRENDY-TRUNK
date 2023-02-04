@@ -43,48 +43,15 @@
                     <div class="classynav">
                         <ul>
                             <li><a href="{% url 'shop' %}">Shop</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Women's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Rompers</a></li>
-                                        <li><a href="shop.html">Bras &amp; Panties</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Men's Collection</li>
-                                        <li><a href="shop.html">T-Shirts</a></li>
-                                        <li><a href="shop.html">Polo</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Kid's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <img src="img/bg-img/bg-6.jpg" alt="">
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="#">Shop</a></li>
-                                    <li><a href="single-product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="single-blog.html">Single Blog</a></li>
-                                    <li><a href="regular-page.html">Regular Page</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </li>
+                                <div class="dropdown">
+                                    <div class="dropdown">
+                                        <ul class="single-mega cn-col-4">
+                                          <li><a href="{% url 'shop' %}">All Products</a></li>
+                                            {% for category in links %}
+                                            <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                     </div>
                             <li><a href="blog.html">Blog</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
@@ -107,14 +74,14 @@
                 {% endif %}
                 <!-- Search Area -->
                 <div class="search-area">
-                    <form action="#" method="post">
+                    <form action="{% url 'search' %}" method="GET">
                         <input type="search" name="search" id="headerSearch" placeholder="Type for search">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
                 <!-- Favourite Area -->
                 <div class="favourite-area">
-                    <a href="#"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItems_count}}</a>
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
@@ -122,7 +89,7 @@
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{item_count}}</span></a>
                 </div>
             </div>
 
@@ -189,7 +156,7 @@
                             <div class="cta--text">
                                 <h6>-60%</h6>
                                 <h2>Global Sale</h2>
-                                <a href="#" class="btn essence-btn">Buy Now</a>
+                                <a href="{% url 'shop' %}" class="btn essence-btn">Buy Now</a>
                             </div>
                         </div>
                     </div>
@@ -216,6 +183,7 @@
                 <div class="col-12">
                     <div class="popular-products-slides owl-carousel">
                         {% for product in products %}
+                        {% if forloop.counter <= 12 %}
                         <!-- Single Product -->
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
@@ -225,7 +193,7 @@
                                <a href="{{ product.get_url}}"><img class="hover-img" src="{{ product.images.url }}" alt=""></a>
                                 <!-- Favourite -->
                                 <div class="product-favourite">
-                                    <a href="#" class="favme fa fa-heart"></a>
+                                    <a href="{% url 'addToWishlist'  product.id %}" class="favme fa fa-heart"></a>
                                 </div>
                             </div>
                             <!-- Product Description -->
@@ -240,11 +208,12 @@
                                 <div class="hover-content">
                                     <!-- Add to Cart -->
                                     <div class="add-to-cart-btn">
-                                        <a href="#" class="btn essence-btn">Add to Cart</a>
+                                        <a href="{% url 'addtocart' product.id %}" class="btn essence-btn">Add to Cart</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -257,27 +226,27 @@
     <div class="brands-area d-flex align-items-center justify-content-between">
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="img/core-img/brand1.png" alt="">
+            <img src="{% static 'img/core-img/brand1.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="img/core-img/brand2.png" alt="">
+            <img src="{% static 'img/core-img/brand2.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="img/core-img/brand3.png" alt="">
+            <img src="{% static 'img/core-img/brand3.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="img/core-img/brand4.png" alt="">
+            <img src="{% static 'img/core-img/brand4.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="img/core-img/brand5.png" alt="">
+            <img src="{% static 'img/core-img/brand5.png' %}" alt="">
         </div>
         <!-- Brand Logo -->
         <div class="single-brands-logo">
-            <img src="img/core-img/brand6.png" alt="">
+            <img src="{% static 'img/core-img/brand6.png' %}" alt="">
         </div>
     </div>
     <!-- ##### Brands Area End ##### -->
@@ -350,10 +319,7 @@
 <div class="row mt-5">
                 <div class="col-md-12 text-center">
                     <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>, distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
+                   </p>
                 </div>
             </div>
 

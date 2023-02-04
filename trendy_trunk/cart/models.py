@@ -1,22 +1,20 @@
 from django.db import models
 from  Store.models import Product
+from accounts.models import Account
 
 # Create your models here.
-class Cart(models.Model):
-    cart_id = models.CharField(max_length=200,blank=True)
-    date_added =models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return self.cart_id
-
-
-class cartItem(models.Model):
+class CartcartItem(models.Model):
+    quantity=models.IntegerField(default=1)
+    user=models.CharField(max_length=100,null=False)
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
-    cart=models.ForeignKey(Cart,on_delete=models.CASCADE)
-    quantity=models.IntegerField()
     is_active=models.BooleanField(default=True)
 
+    def total(self):
+        return self.quantity * self.product.price
 
-    def __str__(self):
-        return self.product
-        
+
+class Wishlist(models.Model):
+    user=models.ForeignKey(Account,on_delete=models.CASCADE)
+    product=models.ForeignKey(Product,on_delete=models.CASCADE)
+    

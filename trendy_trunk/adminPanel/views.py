@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from accounts.models import Account
 from Store.models import Product
 from category.models import Category
+from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 
 
 # Create your views here.
@@ -82,8 +83,11 @@ def blockUser(request,id,action):
 def adminProducts(request):
     products=Product.objects.all()
     AdminProducts_count=products.count()
+    paginator=Paginator(products,9)
+    page=request.GET.get('page')
+    paged_products=paginator.get_page(page)
     context={
-        'products':products,
+        'products':paged_products,
         'AdminProducts_count':AdminProducts_count,
     }
     return render(request,'adminPanel/adminProducts.html',context)
@@ -141,7 +145,6 @@ def addProductPage(request):
 def addProduct(request):
     if request.method == 'POST':
         product_name  = request.POST['product_name']
-        slug          = request.POST['slug']
         description   = request.POST['description']
         price         = request.POST['price']
         image         = request.FILES['image']
@@ -152,7 +155,6 @@ def addProduct(request):
 
         Product.objects.create(
             product_name=product_name,
-            slug=slug,
             description=description,
             price=price,
             images=image,

@@ -60,8 +60,7 @@ def register(request):
             send_email.send()
             messages.success(request,'Regetration successful,check email for vertification')
             return redirect("register")
-
-        
+       
     else:
         form=Registrationform()
     context = {

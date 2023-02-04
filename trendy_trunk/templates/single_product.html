@@ -45,32 +45,14 @@
                 <div class="classynav">
                     <ul>
                         <li><a href="{% url 'shop' %}">Shop</a>
-                            <div class="megamenu">
+                            <div class="dropdown">
                                 <ul class="single-mega cn-col-4">
-                                    <li class="title">Women's Collection</li>
-                                    <li><a href="{% url 'shop' %}">All Products</a></li>
+                                  <li><a href="{% url 'shop' %}">All Products</a></li>
                                     {% for category in links %}
                                     <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
                                     {% endfor %}
-                                    
                                 </ul>
-
-                                <div class="single-mega cn-col-4">
-                                    <img src="img/bg-img/bg-6.jpg" alt="">
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="{% url 'shop' %}">Shop</a></li>
-                                <li><a href="single-product-details.html">Product Details</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="single-blog.html">Single Blog</a></li>
-                                <li><a href="regular-page.html">Regular Page</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
+                             </div>
                         </li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -94,14 +76,14 @@
             {% endif %}
             <!-- Search Area -->
             <div class="search-area">
-                <form action="#" method="post">
+                <form action="{% url 'search' %}" method="GET">
                     <input type="search" name="search" id="headerSearch" placeholder="Type for search">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
             <!-- Favourite Area -->
             <div class="favourite-area">
-                <a href="#"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+                <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
             </div>
             <!-- User Login Info -->
             <div class="user-login-info">
@@ -109,7 +91,7 @@
             </div>
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{item_count}}</span></a>
             </div>
         </div>
 
@@ -137,7 +119,7 @@
             <a href="cart.html">
                 <h2>{{ single_product.product_name }}</h2>
             </a>
-            <p class="product-price"><span class="old-price">INR 1765.00</span>INR {{ single_product.price }}</p>
+            <p class="product-price"><span class="old-price"></span>${{ single_product.price }}</p>
             <p class="product-desc">{{ single_product.description}}</p>
 
             <!-- Form -->
@@ -163,11 +145,11 @@
                     {% if single_product.stock <= 0 %}
                     <h5 class="text-danger">Out Of Stock</h5>
                     {% else %}
-                    <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
+                    <a href="{% url 'addtocart' single_product.id %}" class="btn essence-btn">Add to cart</a>
                     {% endif %}
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">
-                        <a href="#" class="favme fa fa-heart"></a>
+                        <a href="{% url 'addToWishlist' single_product.id %}" class="favme fa fa-heart"></a>
                     </div>
                 </div>
             </form>
