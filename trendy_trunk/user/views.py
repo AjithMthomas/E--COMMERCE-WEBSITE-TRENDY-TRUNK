@@ -8,11 +8,9 @@ from cart.models import CartcartItem,Wishlist
 
 def index(request):
     user = request.user
-    user_name = user.username
-    items=CartcartItem.objects.filter(user=user_name)
+    items=CartcartItem.objects.filter(user=user)
     item_count = items.count()
-    users=request.user.id
-    wishlistItems=Wishlist.objects.filter(user=users)
+    wishlistItems=Wishlist.objects.filter(user=user)
     wishlistItems_count=wishlistItems.count()
     product=Product.objects.all().filter( is_available=True)
     context={

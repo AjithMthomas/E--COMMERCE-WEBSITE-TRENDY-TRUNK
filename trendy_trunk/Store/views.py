@@ -21,7 +21,7 @@ def shop(request,category_slug=None):
     else:
         products = Product.objects.all().filter(is_available=True)
         product_count = products.count()
-        paginator=Paginator(products,6)
+        paginator=Paginator(products,9)
         page=request.GET.get('page')
         paged_products=paginator.get_page(page)
     context={
@@ -34,8 +34,7 @@ def shop(request,category_slug=None):
 
 def Single_product(request,category_slug,product_slug,):
     user = request.user
-    user_name = user.username
-    items=CartcartItem.objects.filter(user=user_name)
+    items=CartcartItem.objects.filter(user=user)
     try:
         single_product=Product.objects.get(category__slug=category_slug,slug=product_slug)
     except Exception as e:

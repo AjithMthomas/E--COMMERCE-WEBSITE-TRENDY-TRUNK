@@ -17,18 +17,19 @@
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
-
+     <!-- paypal -->
+     <script src="https://www.paypal.com/sdk/js?client-id=AW_7H2ode5MnJSLbPJj7gbhrb7Dx7K1UqTqWUPzWBXv3VibUch1sQ7h8wIMsOExwWm7khCGZ1Bu4gsCo&currency=USD"></script>
 
 </head>
 
 <body>
-     <!-- ##### Header Area Start ##### -->
+   <!-- ##### Header Area Start ##### -->
     <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
+                <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/trendy trunk logo.png' %}" alt="" style="height: 75px;width: 130px;"></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -98,158 +99,72 @@
     <!-- ##### Header Area End ##### -->
 
 
-    <!-- ##### Welcome Area Start ##### -->
-    <section class="welcome_area bg-img background-overlay" style="background-image: url(../static/img/bg-img/bg-9.jpg);">
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb_area bg-img" style="background-image:  url({% static 'img/bg-img/breadcumb.jpg' %});">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
-                    <div class="hero-content">
-                          <h2>New Collection</h2>
-                        <a href="{% url 'shop' %}" class="btn essence-btn">view collection</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### Welcome Area End ##### -->
-
-    <!-- ##### Top Catagory Area Start ##### -->
-    <div class="top_catagory_area section-padding-80 clearfix">
-        <div class="container">
-            <div class="row justify-content-center">
-                <!-- Single Catagory -->
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(../static/img/bg-img/bg-2.jpg);">
-                        <div class="catagory-content">
-                            <a href="{% url 'shop' %}">Clothing</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Catagory -->
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(../static/img/bg-img/bg-3.jpg);">
-                        <div class="catagory-content">
-                            <a href="{% url 'shop' %}">Shoes</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Catagory -->
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(../static/img/bg-img/bg-4.jpg);">
-                        <div class="catagory-content">
-                            <a href="{% url 'shop' %}">Accessories</a>
-                        </div>
+                    <div class="page-title text-center">
+                        <h2>Payment</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ##### Top Catagory Area End ##### -->
-
-    <!-- ##### CTA Area Start ##### -->
-    <div class="cta-area">
+    <!-- ##### Breadcumb Area End ##### -->
+      <!-- ##### payment Area Start ##### -->
+      <div class="checkout_area my-3">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="cta-content bg-img background-overlay" style="background-image: url(../static/img/bg-img/bg-5.jpg);">
-                        <div class="h-100 d-flex align-items-center justify-content-end">
-                            <div class="cta--text">
-                                <h6>-60%</h6>
-                                <h2>Global Sale</h2>
-                                <a href="{% url 'shop' %}" class="btn essence-btn">Buy Now</a>
-                            </div>
-                        </div>
+                   <div class="order-details-confirmation">
+                        <div class="cart-page-heading">
+                            <h4>Bill</h4></div>
+                        <ul class="order-details-form mb-4 col-12" style="border-top:1px solid #EBEBEB;">
+                            <li><span>Total</span> <span>$ {{total}}</span></li>
+                            <li><span>Tax</span> <span>$ {{tax}}</span></li>
+                            <li><span>Grand Total</span> <span>${{grand_total}}</span></li>
+                            <li><span>Order Note</span>
+                                {% if order.order_note %}
+                                <span>{{order.order_note}}</span></li>
+                                {% endif %}
+                            <li><span>Payment Method</span> <span>paypal</span></li>
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col" class="fw-100">Image</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col" class="text-center">Quantity</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                   <tr>
+                                    {% for i in cartItems %}
+                                    <th scope="row"><img src="{{i.product.images.url}} " style="height:40px; width:40px;" alt=""></th>
+                                    <td>{{i.product.product_name}}</td>
+                                    <td>${{i.product.price}}</td>
+                                    <td class="text-center">{{i.quantity}}</td>
+                                  </tr>
+                                {% endfor %}
+                                </tbody>
+                          </table>  
+                          <li style="border-top:1px solid #EBEBEB;"><span> Shipping Adress</span> <span >
+                            {{order.first_name}} {{order.last_name}} <br>
+                            {{order.adress_line_1}} <br>
+                            {{order.phone}},{{order.email}} <br>
+                            {{order.city}},{{order.state}} <br>
+                            {{order.country}},{{order.postcode}} <br>
+                        </span>
+                    </li>               
+                        </ul>
+                        <!-- paypal buttons -->
+                        <div id="paypal-button-container" class="text-center">
+                            <!-- paypal buttons will load here -->
+                            </div>  
+                      </form>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### CTA Area End ##### -->
-
-    <!-- ##### New Arrivals Area Start ##### -->
-    <section class="new_arrivals_area section-padding-80 clearfix">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading text-center">
-                        <h2>Popular Products</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="popular-products-slides owl-carousel">
-                        {% for product in products %}
-                        {% if forloop.counter <= 12 %}
-                        <!-- Single Product -->
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <a href="{{ product.get_url}}"><img src="{{ product.images.url }}" alt=""></a>
-                                <!-- Hover Thumb -->
-                               <a href="{{ product.get_url}}"><img class="hover-img" src="{{ product.images.url }}" alt=""></a>
-                                <!-- Favourite -->
-                                <div class="product-favourite">
-                                    <a href="{% url 'addToWishlist'  product.id %}" class="favme fa fa-heart"></a>
-                                </div>
-                            </div>
-                            <!-- Product Description -->
-                            <div class="product-description">
-                                <span>topshop</span>
-                                <a href="single-product-details.html">
-                                    <a href="{{ product.get_url}}"><h6>{{ product.product_name }}</h6></a>
-                                </a>
-                                <p class="product-price">INR {{ product.price }}</p>
-
-                                <!-- Hover Content -->
-                                <div class="hover-content">
-                                    <!-- Add to Cart -->
-                                    <div class="add-to-cart-btn">
-                                        <a href="{% url 'addtocart' product.id %}" class="btn essence-btn">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ##### New Arrivals Area End ##### -->
-
-    <!-- ##### Brands Area Start ##### -->
-    <div class="brands-area d-flex align-items-center justify-content-between">
-        <!-- Brand Logo -->
-        <div class="single-brands-logo">
-            <img src="{% static 'img/core-img/brand1.png' %}" alt="">
-        </div>
-        <!-- Brand Logo -->
-        <div class="single-brands-logo">
-            <img src="{% static 'img/core-img/brand2.png' %}" alt="">
-        </div>
-        <!-- Brand Logo -->
-        <div class="single-brands-logo">
-            <img src="{% static 'img/core-img/brand3.png' %}" alt="">
-        </div>
-        <!-- Brand Logo -->
-        <div class="single-brands-logo">
-            <img src="{% static 'img/core-img/brand4.png' %}" alt="">
-        </div>
-        <!-- Brand Logo -->
-        <div class="single-brands-logo">
-            <img src="{% static 'img/core-img/brand5.png' %}" alt="">
-        </div>
-        <!-- Brand Logo -->
-        <div class="single-brands-logo">
-            <img src="{% static 'img/core-img/brand6.png' %}" alt="">
-        </div>
-    </div>
-    <!-- ##### Brands Area End ##### -->
+                </div>  
+            </div> 
+    <!-- ##### payment Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer_area clearfix">
@@ -319,14 +234,92 @@
 <div class="row mt-5">
                 <div class="col-md-12 text-center">
                     <p>
-                   </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>, distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
                 </div>
             </div>
-
+            
         </div>
+
+
     </footer>
     <!-- ##### Footer Area End ##### -->
+    <script>
+        function getCookie(name){
+            let cookieValue = null;
+            if(document.cookie && document.cookie !== ''){
+                const cookies = document.cookie.split(';');
+                for(let i = 0; i<cookies.length; i++){
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0,name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var amount = "{{grand_total}}"
+        var url = "{% url 'payment' %}"
+        var csrftoken = getCookie('csrftoken');
+        var orderID="{{order.order_number}}"
+        var payment_method = 'paypal'
+        paypal.Buttons({
 
+           // Set up the transaction
+           createOrder: function(data, actions) {
+               return actions.order.create({
+                   purchase_units: [{
+                       amount: {
+                           value: amount,
+                       }
+                   }]
+               });
+           },
+
+           // Finalize the transaction
+           onApprove: function(data, actions) {
+               return actions.order.capture().then(function(orderData) {
+                   // Successful capture! For demo purposes:
+                   console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                   var transaction = orderData.purchase_units[0].payments.captures[0];
+                   alert('Transaction '+ transaction.status + ': ' + transaction.id + '\n\nSee console for all available details');
+                   sendData();
+                   function sendData(){
+                    fetch(url,{
+                        method : "POST",
+                        headers:{
+                          "Content-type":"application/json",
+                          "X-CSRFToken":csrftoken,
+                        },
+                      body:JSON.stringify({
+                        orderID:orderID,
+                        transID:orderData.id,
+                        payment_method:payment_method,
+                        status:orderData.status,
+
+
+                      }),
+
+                    })
+                    // .then(response => response.json())
+                    // .then(data => console.log(data))
+                   }
+
+
+                   // Replace the above to show a success message within this page, e.g.
+                   // const element = document.getElementById('paypal-button-container');
+                   // element.innerHTML = '';
+                   // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                   // Or go to another URL:  actions.redirect('thank_you.html');
+               });
+           }
+
+
+       }).render('#paypal-button-container');
+   </script>
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
     <!-- Popper js -->

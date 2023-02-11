@@ -40,6 +40,11 @@
         font-size: 19px;
         margin-bottom: 20px;
     }
+    .table-wishlist{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .table-wishlist table {
         width: 100%;
     }

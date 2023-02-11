@@ -9,22 +9,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Title  -->
   <title>trendy trunk</title>
-
   <!-- Favicon  -->
   <link rel="icon" href="../static/img/core-img/trendy trunk logo.png">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   <!-- Core Style CSS -->
   <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
   <link rel="stylesheet" href="{% static 'css/cart_wishlist.css' %}">
   <link rel="stylesheet" href="https://kit.fontawesome.com/8cbd89b927.css" crossorigin="anonymous">
-
-
-
 </head>
 
 <body>
@@ -88,7 +82,7 @@
         </div>
         <!-- Favourite Area -->
         <div class="favourite-area">
-          <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+          <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlist_items_count}}</span></a>
         </div>
         <!-- User Login Info -->
         <div class="user-login-info">
@@ -104,23 +98,33 @@
     </div>
   </header>
   <!-- ##### Header Area End ##### -->
+  <div class="breadcumb_area bg-img" style="background-image:  url({% static 'img/bg-img/breadcumb.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>Cart</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
   <!-- cart area start -->
-    <section class="h-100 h-custom" style="background-color: #d8d7de;">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class="h-100 h-custom" style="background-color: #ffffff;">
+    <div class="container-fluid mt-5h-100 ">
+      <div class="row d-flex justify-content-center align-items-center h-100 mx-5">
         <div class="col-12">
-          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class=" card-registration card-registration-2" style="border-radius: 15px;">
             <div class="card-body p-0">
               <div class="row g-0">
                 <div class="col-lg-8">
                   <div class="p-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
-                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                      <h6 class="mb-0 text-muted">{{item_count}} item</h6>
+                    <h6 class="mb-0 text-muted">{{item_count}} item</h6>
                     </div>
                     {% for i in items %}
                     <hr class="my-4">
-                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                    <div class="row mb-5  d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img src="{{i.product.images.url}}" class="img-fluid rounded-3" alt="Cotton T-shirt">
                       </div>
@@ -152,45 +156,26 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 bg-grey">
+                <div class="col-lg-4 bg-grey rounded-0">
                   <div class="p-5">
-                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <h5 class="fw-bold mb-5 mt-2 pt-1"> Order Summary</h5>
                     <hr class="my-4">
 
                     <div class="d-flex justify-content-between mb-4">
                       <h5 class="text-uppercase">items {{item_count}}</h5>
                       <h5>$ {{total_price}}</h5>
                     </div>
-
-                    <h5 class="text-uppercase mb-3">Shipping</h5>
-
-                    <div class="mb-4 pb-2">
-                      <select class="select">
-                        <option value="1">Standard-Delivery- €5.00</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                      </select>
-                    </div><br>
-                    <div class="mb-5">
-                      <h5 class="text-uppercase mb-3">Give code</h5>
-                      <div class="form-outline">
-                        <h5 class="text-uppercase mb-3">
-                          <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
-                          <label class="form-label" for="form3Examplea2">Enter your code</label>
-                      </div>
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Tax</h5><br>
+                      <h5>$ {{tax}}</h5>
                     </div>
-
                     <hr class="my-4">
-
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Total price</h5>
-                      <h5>€ 137.00</h5>
+                      <h5>$ {{grandTotal}}</h5>
                     </div>
-
-                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark">Register</button>
-
+                    <a href="{% url 'checkout' %}"><button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Checkout</button></a>
                   </div>
                 </div>
               </div>

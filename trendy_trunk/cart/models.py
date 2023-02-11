@@ -6,7 +6,7 @@ from accounts.models import Account
 
 class CartcartItem(models.Model):
     quantity=models.IntegerField(default=1)
-    user=models.CharField(max_length=100,null=False)
+    user=models.ForeignKey(Account,on_delete=models.CASCADE,null=True)
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     is_active=models.BooleanField(default=True)
 
@@ -15,6 +15,6 @@ class CartcartItem(models.Model):
 
 
 class Wishlist(models.Model):
-    user=models.ForeignKey(Account,on_delete=models.CASCADE)
+    user=models.ForeignKey(Account,on_delete=models.CASCADE,null=True)
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     

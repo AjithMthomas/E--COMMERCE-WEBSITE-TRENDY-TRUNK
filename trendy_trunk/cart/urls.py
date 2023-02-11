@@ -5,6 +5,7 @@ urlpatterns = [
 # pages
 path('cart',views.cart, name='cart'), 
 path('wishlist',views.wishlist,name='wishlist'),
+path('checkout',views.checkout,name='checkout'),
 
 
 # fuctions

@@ -1,22 +1,33 @@
 from django.shortcuts import render,redirect
 from Store.models import Product
 from.models import CartcartItem,Wishlist
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def cart(request):
-    user = request.user
-    user_name = user.username
-    items=CartcartItem.objects.filter(user=user_name)
-    item_count = items.count()
-    total_price = 0
-    for i in items:
-        total_price += i.total()
-        
-        context={
-        'items':items,
-        'item_count':item_count,
-        'total_price':total_price,
-        }
+    if request.user.is_authenticated:
+        user = request.user
+        items=CartcartItem.objects.filter(user=user)
+        User=request.user
+        wishlist_items=Wishlist.objects.filter(user=User)
+        wishlist_items_count=wishlist_items.count()
+        item_count = items.count()
+        total_price = 0
+        tax=0
+        for i in items:
+            total_price += i.total()
+        tax=(2 * total_price)/100
+        grandTotal=tax+total_price
+    else:
+        return redirect('cart')
+    context={
+            'items':items,
+            'item_count':item_count,
+            'total_price':total_price,
+            'wishlist_items_count':wishlist_items_count,
+            'tax':tax,
+            'grandTotal':grandTotal,
+            }
     return render(request,'cart.html',context)
 
 
@@ -24,11 +35,10 @@ def addtocart(request,id):
     if request.user.is_authenticated:
         product = Product.objects.get(id=id)
         user = request.user
-        uid = user.username
-        if CartcartItem.objects.filter(product=product,user=uid).exists():
+        if CartcartItem.objects.filter(product=product,user=user).exists():
             return redirect('cart')
         else:
-            CartcartItem.objects.create(product=product,user=uid)
+            CartcartItem.objects.create(product=product,user=user)
             return redirect('cart')
     else:
         return redirect('login')
@@ -54,7 +64,7 @@ def CartQuantity(request,id,action):
 
 def wishlist(request):
     user=request.user
-    items=Wishlist.objects.filter(user=user.id)
+    items=Wishlist.objects.filter(user=user)
     items_count=items.count()
     context={
         'items':items,
@@ -82,3 +92,30 @@ def RemoveFromWishlist(request,id):
     wishlistItem.delete()
     return redirect('wishlist')     
 
+ 
+@login_required(login_url='login')
+def checkout(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items=CartcartItem.objects.filter(user=user)
+        User=request.user
+        wishlist_items=Wishlist.objects.filter(user=User)
+        wishlist_items_count=wishlist_items.count()
+        item_count = items.count()
+        total_price = 0
+        tax=0
+        for i in items:
+            total_price += i.total()
+        tax=(2 * total_price)/100
+        grandTotal=tax+total_price
+    else:
+        return redirect('cart')
+    context={
+            'items':items,
+            'item_count':item_count,
+            'total_price':total_price,
+            'wishlist_items_count':wishlist_items_count,
+            'tax':tax,
+            'grandTotal':grandTotal,
+            }
+    return render(request,'order/checkout.html',context)

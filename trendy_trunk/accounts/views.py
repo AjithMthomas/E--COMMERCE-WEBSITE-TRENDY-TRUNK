@@ -3,7 +3,6 @@ from django.shortcuts import render,redirect
 from .forms import Registrationform
 from .models import Account
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 # vertification email and reset password
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string

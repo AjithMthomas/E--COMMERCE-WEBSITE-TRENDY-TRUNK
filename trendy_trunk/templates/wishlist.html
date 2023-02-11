@@ -105,14 +105,26 @@
     </div>
   </header>
   <!-- ##### Header Area End ##### -->
+
   <!-- wishlist area start -->
-  <div class="container">
+  <div class="container-fluid  w-100">
   <div class="cart-wrap mt-5 h-75">
-		<div class="container">
+		<div class="container-fluid">
 	        <div class="row">
 			    <div class="col-md-12">
-			        <div class="main-heading mb-10"><h1 class="my-3 b"><b> My wishlist</b></h1></div>
-			        <div class="table-wishlist">
+			        <div class="main-heading mb-10"><div class="breadcumb_area bg-img" style="background-image:  url({% static 'img/bg-img/breadcumb.jpg' %});">
+                <div class="container  h-100">
+                    <div class="row h-100 align-items-center w-100">
+                        <div class="col-12">
+                            <div class="page-title text-center">
+                                <h2>wishlist</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="d-flex align-items-center justify-content-center">
+			        <div class="table-wishlist w-75">
 				        <table cellpadding="0" cellspacing="0"  width="100%">
 				        	<thead>
 					        	<tr>
@@ -143,6 +155,7 @@
                   {% endfor %}
 				        </table>
 				    </div>
+          </div>
 			    </div>
 			</div>
 		</div>
