@@ -14,6 +14,9 @@ urlpatterns = [
     path('addCategoryPage/',views.addCategoryPage,name='addCategoryPage'),
     path('upadateCategory/<int:id>/',views.upadateCategory,name='upadateCategory'),
     path('updateProduct/<int:id>/',views.updateProduct,name='updateProduct'),
+    path('adminOrders/',views.adminOrders,name='adminOrders'),
+    path('invoice/<int:id>/',views.invoice,name='invoice'),
+    
 
     
 
@@ -27,5 +30,6 @@ urlpatterns = [
     path('deleteCategory/<int:id>/',views.deleteCategory,name='deleteCategory'),
     path('addProduct/',views.addProduct,name='addProduct'),
     path('addCategory/',views.addCategory,name='addCategory'),
+    path('orderSearch/',views.orderSearch,name='orderSearch')
 
 ]

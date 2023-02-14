@@ -5,6 +5,9 @@ from accounts.models import Account
 from Store.models import Product
 from category.models import Category
 from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
+from order.models import Order,Payment,OrderProduct
+from django.db.models import Q
+
 
 
 # Create your views here.
@@ -81,7 +84,7 @@ def blockUser(request,id,action):
 
 
 def adminProducts(request):
-    products=Product.objects.all()
+    products=Product.objects.all().order_by("created_date")
     AdminProducts_count=products.count()
     paginator=Paginator(products,9)
     page=request.GET.get('page')
@@ -229,3 +232,38 @@ def updateProduct(request,id):
         'categeries':categeries
     }
     return render(request,'adminPanel/updateProduct.html',context)
+
+
+def adminOrders(request):
+    orders = Order.objects.all().order_by('-created_at')
+    orders_count = orders.count()
+    paginator=Paginator(orders,10)
+    page=request.GET.get('page')
+    paged_orders=paginator.get_page(page)
+    context={
+        'orders':paged_orders,
+        'orders_count':orders_count,
+    }
+    return render(request,'adminPanel/orders.html',context)
+
+
+def invoice(request,id):
+    orders=Order.objects.filter(user=request.user,is_orderd=True,id=id)
+    context={
+        'orders':orders,
+    }
+    return render(request,'adminPanel/invoice.html',context)
+
+
+def orderSearch(request):
+    if 'search' in request.GET:
+         search=request.GET['search']
+         if search:
+             orders=Order.objects.filter(Q(first_name__icontains=search) | Q(order_number__icontains=search))
+             orders_count = orders.count()
+    context={
+        'orders':orders,
+        'orders_count':orders_count,
+    }
+
+    return render(request,'adminPanel/orders.html',context)

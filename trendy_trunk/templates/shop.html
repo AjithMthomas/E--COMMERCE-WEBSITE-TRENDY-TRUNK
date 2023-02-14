@@ -84,7 +84,7 @@
             </div>
             <!-- Favourite Area -->
             <div class="favourite-area">
-                <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+                <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItems_count}}</span></a>
             </div>
             <!-- User Login Info -->
             <div class="user-login-info">
@@ -92,7 +92,7 @@
             </div>
             <!-- Cart Area -->
             <div class="cart-area">
-                <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{item_count}}</span></a>
             </div>
         </div>
 

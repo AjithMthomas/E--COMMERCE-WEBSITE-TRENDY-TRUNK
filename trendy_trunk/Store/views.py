@@ -4,13 +4,17 @@ from category . models import Category
 from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 from cart.models import CartcartItem
 from django.db.models import Q
+from cart.models import CartcartItem,Wishlist
 
 # Create your views here.
 
 def shop(request,category_slug=None):
     categories=None
     products=None
-
+    items=CartcartItem.objects.filter(user=request.user)
+    item_count = items.count()
+    wishlistItems=Wishlist.objects.filter(user=request.user)
+    wishlistItems_count=wishlistItems.count()
     if  category_slug != None:
         categories = get_object_or_404(Category,slug=category_slug)
         products=Product.objects.filter(category=categories,is_available=True)
@@ -27,6 +31,8 @@ def shop(request,category_slug=None):
     context={
             'products': paged_products,
             'product_count': product_count,
+            'wishlistItems_count':wishlistItems_count,
+            'item_count':item_count
     }
     return render(request,'shop.html',context)
 

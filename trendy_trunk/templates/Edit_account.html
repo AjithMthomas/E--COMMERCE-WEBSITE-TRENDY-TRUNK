@@ -27,7 +27,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="index.html"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
+                <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -127,77 +127,69 @@
     <!-- user details starts -->
     <section style="background-color: #eee;">
         <div class="container py-5">
-    
-      
           <div class="row">
             <div class="col-lg-4">
               <div class="card mb-4">
                 <div class="card-body text-center">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  <img src="{{userProfile.profile_picture.url}}" alt="avatar"
                     class="rounded-circle img-fluid" style="width: 150px;">
                   <h5 class="my-3">John Smith</h5>
                   <div class="d-flex  justify-content-center " style="flex-direction: column;">
                     <a href="#" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Profile</button> </a>
-                    <a href="{% url 'order_history' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Order Hstory</button> </a>
-                    <a href="#" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Password</button> </a>
+                    <!-- <a href="{% url 'order_history' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Order Hstory</button> </a> -->
+                    <a href="{% url 'changePassword' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Password</button> </a>
                   </div>
                 </div>
               </div>
                </div>
-            <div class="col-lg-8">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Full Name</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">{{users.state}}</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Email</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">example@example.com</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Phone</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">(097) 234-5678</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Mobile</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">(098) 765-4321</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Address</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                    </div>
-                  </div>
+               <div class="col-lg-8">
+               <form action="{% url 'edit_account' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                 <div class="row">
+                     <div class="col-md-6 mb-3">
+                         <label for="first_name">First Name <span>*</span></label>
+                        {{user_form.first_name}}<br>
+                     </div>
+                     <div class="col-md-6 mb-3">
+                         <label for="last_name">Last Name <span>*</span></label>
+                         {{user_form.last_name}}
+                     </div><br>
+                     <div class="col-12 mb-3">
+                      <label for="street_address">Address 1<span>*</span></label>
+                      {{profile_form.address_line_1}}
+                      <label for="street_address">Address 2<span>*</span></label>
+                      {{profile_form.address_line_2}}
+                     </div><br>
+                     <div class="col-6 mb-3">
+                      <label for="images">Profile Picture<span>*</span></label>
+                      {{profile_form.profile_picture}}
+                    </div><br>
+                     <div class="col-6 mb-3">
+                      <label for="phone_number">Phone No<span>*</span></label>
+                      {{user_form.phone_number}}
+                    </div><br>
+                     <div class="col-6 mb-3">
+                         <label for="city">Town/City <span>*</span></label>
+                         {{profile_form.city}}
+                     </div><br>
+                     <div class="col-6 mb-3">
+                         <label for="state">State<span>*</span></label>
+                         {{profile_form.state}}
+                     </div><br>
+                     <div class="col-4 mb-3">
+                         <label for="state">Country<span>*</span></label>
+                         {{profile_form.country}}
+                     </div><br>
+                     <div class="col-4 mb-3">
+                      <label for="postcode">Postcode <span>*</span></label>
+                      {{profile_form.postcode}}
+                  </div>     
                 </div>
-              </div>
-              <button class="btn btn-outline-primary border-0  bg-primary" type="button"><a href="{% url 'user_account' %}"> Update </a></button>
-            </div>
-           
+              <button class="btn essence-btn" type="submit">Update</button>  
+           </form>
           </div>
         </div>
+    </div>
       </section>
       <!-- user details ends -->
 

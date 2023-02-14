@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>trendy trunk</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Choices.js-->
+    <link rel="stylesheet" href="{% static 'adminPanel/vendor/choices.js/public/assets/styles/choices.min.css' %}">
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'adminPanel/css/style.default.css' %}" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'adminPanel/css/custom.css' %}">
+    <!-- Favicon-->
+    <link rel="icon" href="{% static 'img/core-img/trendy trunk logo.png' %}">
+    <!--bootsrap icons cdn  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <header class="header">   
+      <nav class="navbar navbar-expand-lg py-3 bg-dash-dark-2 border-bottom border-dash-dark-1 z-index-10">
+        <div class="search-panel">
+          <div class="search-inner d-flex align-items-center justify-content-center">
+            <div class="close-btn d-flex align-items-center position-absolute top-0 end-0 me-4 mt-2 cursor-pointer"><span>Close </span>
+                  <svg class="svg-icon svg-icon-md svg-icon-heavy text-gray-700 mt-1">
+                    <use xlink:href="#close-1"> </use>
+                  </svg>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid d-flex align-items-center justify-content-between py-1">
+          <div class="navbar-header d-flex align-items-center"><a class="navbar-brand text-uppercase text-reset" href="index.html">
+              <div class="brand-text brand-big"><strong class="text-primary">trendy</strong><strong class="ms-1"> trunk</strong></div>
+              <div class="brand-text brand-sm"><strong class="text-primary">t</strong><strong>t</strong></div></a>
+              <button class="sidebar-toggle">
+                <svg class="svg-icon svg-icon-sm svg-icon-heavy transform-none">
+                  <use xlink:href="#arrow-left-1"> </use>
+                </svg>
+          </button>
+          </div>
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item logout px-lg-2"><a class="nav-link text-sm text-reset px-1 px-lg-0" id="logout" href="{% url 'logoutAdmin' %}"> <span class="d-none d-sm-inline-block">Logout </span>
+                    <svg class="svg-icon svg-icon-xs svg-icon-heavy">
+                      <use xlink:href="#disable-1"> </use>
+                    </svg></a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="d-flex align-items-stretch">
+      <!-- Sidebar Navigation-->
+      <nav id="sidebar">
+        <!-- Sidebar Header-->
+        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="{% static 'img/avatar-6.jpg' %}" alt="...">
+          <div class="ms-3 title">
+            <h1 class="h5 mb-1">{{user.first_name}} {{user.last_name}}</h1>
+          </div>
+        </div><span class="text-uppercase text-gray-600 text-xs mx-3 px-2 heading mb-2">Main</span>
+        <ul class="list-unstyled">
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminIndex' %}"> 
+                <i class="bi bi-house fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Home</span></a></li>
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminUsers' %}"> 
+                <i class="bi bi-people fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Users</span></a></li>
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminProducts' %}"> 
+                <i class="bi bi-collection fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Products </span></a></li>
+              {% comment %} <li class="sidebar-item"><a class="sidebar-link" href="forms.html"> 
+                <i class="bi bi-ticket fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Coupons</span></a></li> {% endcomment %}
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminOrders' %}"> 
+                <i class="bi bi-bag-plus fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Orders</span></a></li>
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
+                <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>
+        </ul>
+        </nav>
+    <!-- header ends -->
+    <!-- invoice starts -->
+    <div class="card mt-3 mb-5  d-flex  justify-content-center  align-items-center w-75 ms-5" style="border:2px solid #c8c9cb;">
+        <div class="card-body">
+          {% for order in orders %}
+          <div class="container mb-5 mt-3 ">
+            <div class="row d-flex align-items-baseline">
+            </div>
+            <div class="container">
+              <div class="col-md-12">
+                <div class="text-center">
+                    <img src="{% static 'img/core-img/trendy trunk logo.png' %}" alt="" style="height: 75px;width: 130px;">
+                  <p class="pt-2">trendy trunk</p>
+                </div>
+              </div>
+              <div class="col-xl-9">
+                <p style="color: #7e8d9f;font-size: 15px;"><strong>INVOICE ID : {{order.order_number}}</strong></p>
+              </div>
+              <div class="row">
+                <div class="col-xl-8">
+                  <ul class="list-unstyled">
+                    <li class="text-muted"><b style="color: #7e8d9f;font-size: 20px; border-bottom:1px solid #7e8d9f;">To:</b>  <br><span >{{order.first_name}} {{order.last_name}}</span></li>
+                    <li class="text-muted">{{order.adress_line_1}}</li>
+                    <li class="text-muted">{{order.city}}, {{order.state}}</li>
+                    <li class="text-muted">{{order.country}}, {{order.postcode}}</li>
+                    <li class="text-muted"><i class="fas fa-phone"></i>{{order.phone}}</li>
+                  </ul>
+                </div>
+                <div class="col-xl-4">
+                  <p class="text-center" style="color: #7e8d9f;font-size: 20px; border-bottom:1px solid #7e8d9f;">Invoice</p>
+                  <ul class="list-unstyled">
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                        class="fw-bold">Payment ID:</span><br>{{order.payment.payment_id}}</li>
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
+                        class="fw-bold">Creation Date: </span>{{order.created_at}}</li>
+                    {% if order.payment.status%}
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061;"></i> <span
+                        class="me-1 fw-bold">Status:</span><span class="badge bg-success text-black fw-bold">
+                        Paid</span></li>
+                    {% else %}
+                    <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061;"></i> <span
+                          class="me-1 fw-bold">Status:</span><span class="badge bg-danger text-black fw-bold">
+                          Unpaid</span></li>    
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-xl-8">
+                  <p class="ms-3">Add additional notes and payment information</p>
+                </div>
+                <div class="col-xl-3">
+                  <ul class="list-unstyled">
+                    
+                    <li class="text-muted  mt-2"><span class="text-black me-4">Tax:</span>$ {{order.tax}}</li>
+                  </ul>
+                  <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
+                      style="font-size: 25px; color: red;">$ {{order.order_total}}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    <!-- invoice ends -->
+</div>
+   <!-- JavaScript files-->
+   <script src="{% static 'adminPanel/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+   <script src="{% static 'adminPanel/vendor/just-validate/js/just-validate.min.js' %}"></script>
+   <script src="{% static 'adminPanel/vendor/chart.js/Chart.min.js' %}"></script>
+   <script src="{% static 'adminPanel/vendor/choices.js/public/assets/scripts/choices.min.js' %}"></script>
+   <script src="{% static 'adminPanel/js/charts-home.js' %}"></script>
+   <!-- Main File-->
+   <script src="{% static 'adminPanel/js/front.js' %}"></script>
+   <script>
+    // ------
+      // ------------------------------------------------------- //
+      //   Inject SVG Sprite - 
+      //   see more here 
+      //   https://css-tricks.com/ajaxing-svg-sprite/
+      // ------------------------------------------------------ //
+      function injectSvgSprite(path) {
+      
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", path, true);
+          ajax.send();
+          ajax.onload = function(e) {
+          var div = document.createElement("div");
+          div.className = 'd-none';
+          div.innerHTML = ajax.responseText;
+          document.body.insertBefore(div, document.body.childNodes[0]);
+          }
+      }
+      // this is set to BootstrapTemple website as you cannot 
+      // inject local SVG sprite (using only 'icons/orion-svg-sprite.svg' path)
+      // while using file:// protocol
+      // pls don't forget to change to your domain :)
+      injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+      
+      
+    </script>
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  </body>
+</html>

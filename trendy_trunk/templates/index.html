@@ -28,7 +28,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
+                <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/trendy trunk logo.png' %}" alt="" style="height: 75px;width: 130px;"></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -202,7 +202,7 @@
                                 <a href="single-product-details.html">
                                     <a href="{{ product.get_url}}"><h6>{{ product.product_name }}</h6></a>
                                 </a>
-                                <p class="product-price">INR {{ product.price }}</p>
+                                <p class="product-price">$ {{ product.price }}</p>
 
                                 <!-- Hover Content -->
                                 <div class="hover-content">

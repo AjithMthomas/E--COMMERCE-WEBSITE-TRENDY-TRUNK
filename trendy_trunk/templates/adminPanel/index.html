@@ -73,9 +73,9 @@
                 <i class="bi bi-people fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Users</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminProducts' %}"> 
                 <i class="bi bi-collection fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Products </span></a></li>
-              <li class="sidebar-item"><a class="sidebar-link" href="forms.html"> 
-                <i class="bi bi-ticket fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Coupons</span></a></li>
-              <li class="sidebar-item"><a class="sidebar-link" href="forms.html"> 
+              {% comment %} <li class="sidebar-item"><a class="sidebar-link" href="forms.html"> 
+                <i class="bi bi-ticket fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Coupons</span></a></li> {% endcomment %}
+              <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminOrders' %}"> 
                 <i class="bi bi-bag-plus fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Orders</span></a></li>
               <li class="sidebar-item"><a class="sidebar-link" href="{% url 'adminCategory' %}"> 
                 <i class="bi bi-tags fs-3"></i><span class="ms-md-5 ms-0 fs-4-md fs-6">Category</span></a></li>

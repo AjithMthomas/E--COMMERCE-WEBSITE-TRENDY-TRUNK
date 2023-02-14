@@ -18,7 +18,7 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
      <!-- paypal -->
-     <script src="https://www.paypal.com/sdk/js?client-id=AW_7H2ode5MnJSLbPJj7gbhrb7Dx7K1UqTqWUPzWBXv3VibUch1sQ7h8wIMsOExwWm7khCGZ1Bu4gsCo&currency=USD"></script>
+     <script src="https://www.paypal.com/sdk/js?client-id=AY8u1GJAlMEgIlLjTqpn2CTu53gteu9ee3OxH9Uu-l48g4ukpBTg7Pp18VTx8XLo-9rS8dwVr3Z4vPL4&currency=USD"></script>
 
 </head>
 
@@ -266,6 +266,7 @@
         var csrftoken = getCookie('csrftoken');
         var orderID="{{order.order_number}}"
         var payment_method = 'paypal'
+        var redirect_url="{% url 'orderCompleted' %}"
         paypal.Buttons({
 
            // Set up the transaction
@@ -304,8 +305,10 @@
                       }),
 
                     })
-                    // .then(response => response.json())
-                    // .then(data => console.log(data))
+                    .then((response) => response.json())
+                    .then((data) => {
+                        window.location.href = redirect_url + '?order_number='+data.order_number + '&payment_id='+data.transId;
+                    });
                    }
 
 
