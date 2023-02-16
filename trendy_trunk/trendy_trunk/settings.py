@@ -73,6 +73,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'category.context_processors.menu_links',
+                'cart.context_processors.countCartItems',
+                'cart.context_processors.wishlistItemsCount',
             ],
         },
     },
@@ -160,5 +162,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT=587
 EMAIL_HOST_USER='ajithmt1111@gmail.com'
-EMAIL_HOST_PASSWORD='sqehvewovuyigbuiu'
+EMAIL_HOST_PASSWORD='fvmvzajpdblqcqyd'
 EMAIL_USE_TLS=True

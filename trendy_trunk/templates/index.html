@@ -13,7 +13,7 @@
     <title>trendy trunk</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="../static/img/core-img/trendy trunk logo.png">
+    <link rel="icon" href="{% static 'img/core-img/trendy trunk logo.png' %}">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
@@ -52,8 +52,8 @@
                                             {% endfor %}
                                         </ul>
                                      </div>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{% url 'blog' %}">Blog</a></li>
+                           
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -81,7 +81,7 @@
                 </div>
                 <!-- Favourite Area -->
                 <div class="favourite-area">
-                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItems_count}}</a>
+                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItemsCount}}</a>
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
@@ -89,7 +89,7 @@
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{item_count}}</span></a>
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{cartItems_count}}</span></a>
                 </div>
             </div>
 

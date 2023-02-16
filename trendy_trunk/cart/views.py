@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from Store.models import Product
 from.models import CartcartItem,Wishlist
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 def cart(request):
@@ -41,6 +42,7 @@ def addtocart(request,id):
             CartcartItem.objects.create(product=product,user=user)
             return redirect('cart')
     else:
+        messages.error(request,'login for making order')
         return redirect('login')
     
 
@@ -84,6 +86,7 @@ def addToWishlist(request,id):
             Wishlist.objects.create(product=product,user=user)
             return redirect('wishlist')
     else:
+        messages.error(request,'login for making orders')
         return redirect('login')
     
 

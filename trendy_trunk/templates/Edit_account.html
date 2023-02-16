@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-   <!-- BOOTSTRAP -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Title  -->
     <title>trendy trunk</title>
 
     <!-- Favicon  -->
@@ -20,14 +20,15 @@
 
 
 </head>
+
 <body>
-    <!-- ##### Header Area Start ##### -->
-       <header class="header_area">
+     <!-- ##### Header Area Start ##### -->
+    <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="{% url 'index' %}"><img src="../static/img/core-img/trendy trunk logo.png" alt="" style="height: 75px;width: 130px;"></a>
+                <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/trendy trunk logo.png' %}" alt="" style="height: 75px;width: 130px;"></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -41,51 +42,18 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="#">Shop</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Women's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Rompers</a></li>
-                                        <li><a href="shop.html">Bras &amp; Panties</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Men's Collection</li>
-                                        <li><a href="shop.html">T-Shirts</a></li>
-                                        <li><a href="shop.html">Polo</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Kid's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <img src="img/bg-img/bg-6.jpg" alt="">
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="single-product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="single-blog.html">Single Blog</a></li>
-                                    <li><a href="regular-page.html">Regular Page</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{% url 'shop' %}">Shop</a>
+                                <div class="dropdown">
+                                    <div class="dropdown">
+                                        <ul class="single-mega cn-col-4">
+                                          <li><a href="{% url 'shop' %}">All Products</a></li>
+                                            {% for category in links %}
+                                            <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                     </div>
+                                     <li><a href="{% url 'blog' %}">Blog</a></li>
+                                     
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -93,45 +61,53 @@
             </nav>
 
             <!-- Header Meta Data -->
+            <!-- signin/signout-->
             <div class="header-meta d-flex clearfix justify-content-end">
+                {% if user.id is not None %}
+                 <div class="user-login-info">
+                    <a href="{% url 'logout' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Logout</a>
+                </div>
+                {% else %}
+                <div class="user-login-info">
+                    <a href="{% url 'login' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Login</a>
+                </div>
+                {% endif %}
                 <!-- Search Area -->
                 <div class="search-area">
-                    <form action="#" method="post">
+                    <form action="{% url 'search' %}" method="GET">
                         <input type="search" name="search" id="headerSearch" placeholder="Type for search">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
-                <div  class="d-flex justify-content-center align items cent">
-                    <!-- Favourite Area -->
-                    <div class="favourite-area">
-                        <a href="#"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
-                    </div>
-                    <!-- User Login Info -->
-                    <div class="user-login-info">
-                        <a href="#"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
-                    </div>
-                    <!-- Cart Area -->
-                    <div class="cart-area"   style="border-right: 1px solid #ebebeb;">
-                        <a href="#" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
-                    </div>
-                      <button class="btn btn-outline-danger border-0 " type="button">
-                        <a href="{% url 'logout' %}">
-                          <i class="fas fa-sign-out-alt"></i> Logout 
-                        </a>
-                      </button>
-                    </div>
-                  </div>
-              </div>
-          </div>
-    </header>
+                <!-- Favourite Area -->
+                <div class="favourite-area">
+                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItemsCount}}</a>
+                </div>
+                <!-- User Login Info -->
+                <div class="user-login-info">
+                    <a href="{% url 'user_account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
+                </div>
+                <!-- Cart Area -->
+                <div class="cart-area">
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{cartItems_count}}</span></a>
+                </div>
+            </div>
+
+        </div>
+    </header> 
+    <!-- ##### Header Area End ##### -->
     <!-- user details starts -->
     <section style="background-color: #eee;">
         <div class="container py-5">
           <div class="row">
             <div class="col-lg-4">
               <div class="card mb-4">
-                <div class="card-body text-center">
-                  <img src="{{userProfile.profile_picture.url}}" alt="avatar"
+                <div class="card-body text-center"> 
+                  {% if userProfile.profile_picture %}
+                  <img src="{{userProfile.profile_picture.url}}" 
+                  {% else %}
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  {% endif %}
                     class="rounded-circle img-fluid" style="width: 150px;">
                   <h5 class="my-3">John Smith</h5>
                   <div class="d-flex  justify-content-center " style="flex-direction: column;">

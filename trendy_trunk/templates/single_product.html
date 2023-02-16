@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Title  -->
     <title>trendy trunk</title>
@@ -19,86 +18,83 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 
 <body>
-  <!-- ##### Header Area Start ##### -->
-  <header class="header_area">
-    <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
-        <!-- Classy Menu -->
-        <nav class="classy-navbar" id="essenceNav">
-            <!-- Logo -->
-            <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/trendy trunk logo.png' %}" alt="" style="height: 75px;width: 130px;"></a>
-            <!-- Navbar Toggler -->
-            <div class="classy-navbar-toggler">
-                <span class="navbarToggler"><span></span><span></span><span></span></span>
-            </div>
-            <!-- Menu -->
-            <div class="classy-menu">
-                <!-- close btn -->
-                <div class="classycloseIcon">
-                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+     <!-- ##### Header Area Start ##### -->
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Logo -->
+                <a class="nav-brand" href="{% url 'index' %}"><img src="{% static 'img/core-img/trendy trunk logo.png' %}" alt="" style="height: 75px;width: 130px;"></a>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
                 </div>
-                <!-- Nav Start -->
-                <div class="classynav">
-                    <ul>
-                        <li><a href="{% url 'shop' %}">Shop</a>
-                            <div class="dropdown">
-                                <ul class="single-mega cn-col-4">
-                                  <li><a href="{% url 'shop' %}">All Products</a></li>
-                                    {% for category in links %}
-                                    <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
-                                    {% endfor %}
-                                </ul>
-                             </div>
-                        </li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="{% url 'shop' %}">Shop</a>
+                                <div class="dropdown">
+                                    <div class="dropdown">
+                                        <ul class="single-mega cn-col-4">
+                                          <li><a href="{% url 'shop' %}">All Products</a></li>
+                                            {% for category in links %}
+                                            <li><a href="{{category.get_url}}">{{category.category_name}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                     </div>
+                                     <li><a href="{% url 'blog' %}">Blog</a></li>
+                                    
+                    </div>
+                    <!-- Nav End -->
                 </div>
-                <!-- Nav End -->
-            </div>
-        </nav>
+            </nav>
 
-        <!-- Header Meta Data -->
-        <!-- signin/signout-->
-        <div class="header-meta d-flex clearfix justify-content-end">
-            {% if user.id is not None %}
-             <div class="user-login-info">
-                <a href="{% url 'logout' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Logout</a>
+            <!-- Header Meta Data -->
+            <!-- signin/signout-->
+            <div class="header-meta d-flex clearfix justify-content-end">
+                {% if user.id is not None %}
+                 <div class="user-login-info">
+                    <a href="{% url 'logout' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Logout</a>
+                </div>
+                {% else %}
+                <div class="user-login-info">
+                    <a href="{% url 'login' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Login</a>
+                </div>
+                {% endif %}
+                <!-- Search Area -->
+                <div class="search-area">
+                    <form action="{% url 'search' %}" method="GET">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <!-- Favourite Area -->
+                <div class="favourite-area">
+                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItemsCount}}</a>
+                </div>
+                <!-- User Login Info -->
+                <div class="user-login-info">
+                    <a href="{% url 'user_account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
+                </div>
+                <!-- Cart Area -->
+                <div class="cart-area">
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{cartItems_count}}</span></a>
+                </div>
             </div>
-            {% else %}
-            <div class="user-login-info">
-                <a href="{% url 'login' %}" style="color:#797575; font-family:sans-serif;font-weight: 510;">Login</a>
-            </div>
-            {% endif %}
-            <!-- Search Area -->
-            <div class="search-area">
-                <form action="{% url 'search' %}" method="GET">
-                    <input type="search" name="search" id="headerSearch" placeholder="Type for search">
-                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                </form>
-            </div>
-            <!-- Favourite Area -->
-            <div class="favourite-area">
-                <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
-            </div>
-            <!-- User Login Info -->
-            <div class="user-login-info">
-                <a href="{% url 'user_account' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
-            </div>
-            <!-- Cart Area -->
-            <div class="cart-area">
-                <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{item_count}}</span></a>
-            </div>
+
         </div>
-
-    </div>
-</header> 
-<!-- ##### Header Area End ##### -->
-
+    </header> 
+    <!-- ##### Header Area End ##### -->
 
 
     <!-- ##### Single Product Details Area Start ##### -->

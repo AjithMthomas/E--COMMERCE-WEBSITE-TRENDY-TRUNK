@@ -12,18 +12,18 @@
     <!-- Title  -->
     <title>trendy trunk</title>
 
-    <!-- Favicon  -->
-    <link rel="icon" href="../static/img/core-img/trendy trunk logo.png">
+   <!-- Favicon  -->
+   <link rel="icon" href="{% static 'img/core-img/trendy trunk logo.png' %}">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
+    
      <!-- paypal -->
-     <script src="https://www.paypal.com/sdk/js?client-id=AY8u1GJAlMEgIlLjTqpn2CTu53gteu9ee3OxH9Uu-l48g4ukpBTg7Pp18VTx8XLo-9rS8dwVr3Z4vPL4&currency=USD"></script>
-
+     <script src="https://www.paypal.com/sdk/js?client-id=AZ2IbQzFG5e5uGWxl5r0ZuvHn6g_dOhvLdJzsA3Gc2Q4QRMhwJo8KHyeBTAo15s9MyfUTkkj1NvS9l0K&currency=USD"></script>
 </head>
 
 <body>
-   <!-- ##### Header Area Start ##### -->
+     <!-- ##### Header Area Start ##### -->
     <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
@@ -53,8 +53,8 @@
                                             {% endfor %}
                                         </ul>
                                      </div>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                                     <li><a href="{% url 'blog' %}">Blog</a></li>
+                                     
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -82,7 +82,7 @@
                 </div>
                 <!-- Favourite Area -->
                 <div class="favourite-area">
-                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItems_count}}</a>
+                    <a href="{% url 'wishlist' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""><span>{{wishlistItemsCount}}</a>
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
@@ -90,7 +90,7 @@
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{item_count}}</span></a>
+                    <a href="{% url 'cart' %}" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>{{cartItems_count}}</span></a>
                 </div>
             </div>
 
