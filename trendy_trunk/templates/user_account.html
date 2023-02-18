@@ -112,7 +112,7 @@
                   <h5 class="my-3">Hi {{user.username}}</h5>
                   <div class="d-flex  justify-content-center " style="flex-direction: column;">
                     <a href="{% url 'edit_account' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Profile</button> </a>
-                    <!-- <a href="{% url 'order_history' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Order Hstory</button> </a> -->
+                    <a href="{% url 'orderedProducts' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Ordered Products</button> </a>
                     <a href="{% url 'changePassword' %}" class=" ms-1 my-2 mx-5"><button type="submit" class="btn btn-outline-primary" style="width: 200px;">Edit Password</button> </a>
                   </div>
                   {% if messages %}
@@ -186,60 +186,7 @@
                   </div>
                 </div>
               </div>
-            
             </div>
-            {% if orders %}
-            <h4>Ordered Products</h4>
-            <table class="table" style="color:#6C757D;">
-              <thead>
-                <tr>
-                  <th scope="col" class="fw-100">Image</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Price</th>
-                  <th scope="col" class="text-center">Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                 <tr>
-                  {% for i in orders %}
-                  <th scope="row"><img src="{{i.product.images.url}} " style="height:40px; width:40px;" alt=""></th>
-                  <td>{{i.product.product_name}}</td>
-                  <td>${{i.product.price}}</td>
-                  <td class="text-center">{{i.quantity}}</td>
-                </tr>
-              {% endfor %}
-              </tbody>
-        </table>
-        <nav aria-label="navigation">
-          {% if orders.has_other_pages %}
-        <ul class="pagination mt-50 mb-70">
-            {% if orders.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page={{orders.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
-            {% else %}
-            <li class="page-item disabled"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
-            {% endif %}
-            {% for i in orders.paginator.page_range %}
-            {% if orders.number == i %}
-            <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
-            {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-            {% endif %}
-            {% endfor %}
-           
-            {% if orders.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{orders.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
-            {% else%}
-            <li class="page-item disabled"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li>
-            {% endif %}
-        </ul>
-        {% endif %}
-      </nav>
-        {% else%}
-      
-        <span class="w-100"><h5 class="text-danger col-lg-8">No products has Ordered yet</h5>
-        <h6 class="col-lg-4 "> <a href="{% url 'shop' %}" class="text-info fs-3">Make some orders</a></h6></span>
-  
-        {% endif %}
           </div>
         </div>
       </section>

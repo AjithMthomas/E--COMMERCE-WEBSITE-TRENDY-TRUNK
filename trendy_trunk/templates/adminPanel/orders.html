@@ -82,7 +82,7 @@
       <!-- Sidebar Navigation-->
       <nav id="sidebar">
         <!-- Sidebar Header-->
-        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="{% static 'img/avatar-6.jpg' %}" alt="...">
+        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar">
           <div class="ms-3 title">
             <h1 class="h5 mb-1">{{user.first_name}} {{user.last_name}}</h1>
           </div>
@@ -121,14 +121,14 @@
         <tbody>
           {% for order in orders %}
           <tr>
-              <th scope="row" class="w-25">{{order.order_number}}</th>
-              <td class="align-middle">{{order.email}}</td>
-              <td class="align-middle">{{order.first_name}} {{order.last_name}}</td>
-              <td class="align-middle">{{order.adress_line_1}} <br>{{order.city}},{{order.state}}<br>{{order.country}},{{order.postcode}} <br>{{order.phone}}</td>
-              <td class="align-middle">{{order.payment.amount_paid}}</td>
-              <td class="align-middle">{{order.payment.payment_method}}</td>
-              {% if  order.payment.status %}
-              <td class="align-middle text-success">{{order.payment.status}}</td>
+              <th scope="row" class="w-25">{{order.Order.order_number}}</th>
+              <td class="align-middle">{{order.Order.email}}</td>
+              <td class="align-middle">{{order.Order.first_name}} {{order.last_name}}</td>
+              <td class="align-middle">{{order.Order.adress_line_1}} <br>{{order.Order.city}},{{order.Order.state}}<br>{{order.Order.country}},{{order.Order.postcode}} <br>{{order.Order.phone}}</td>
+              <td class="align-middle">{{order.Order.payment.amount_paid}}</td>
+              <td class="align-middle">{{order.Order.payment.payment_method}}</td>
+              {% if  order.Order.payment.status %}
+              <td class="align-middle text-success">{{order.Order.payment.status}}</td>
               {% else %}
               <td class="align-middle text-danger">NOT completed</td>
               {% endif %}

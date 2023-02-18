@@ -60,7 +60,7 @@
       <!-- Sidebar Navigation-->
       <nav id="sidebar">
         <!-- Sidebar Header-->
-        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="{% static 'img/avatar-6.jpg' %}" alt="...">
+        <div class="sidebar-header d-flex align-items-center p-4"><img class="avatar shadow-0 img-fluid rounded-circle" src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar">
           <div class="ms-3 title">
             <h1 class="h5 mb-1">{{user.first_name}} {{user.last_name}}</h1>
           </div>
@@ -96,26 +96,26 @@
                 </div>
               </div>
               <div class="col-xl-9">
-                <p style="color: #7e8d9f;font-size: 15px;"><strong>INVOICE ID : {{order.order_number}}</strong></p>
+                <p style="color: #7e8d9f;font-size: 15px;"><strong>INVOICE ID : {{order.Order.order_number}}</strong></p>
               </div>
               <div class="row">
                 <div class="col-xl-8">
                   <ul class="list-unstyled">
-                    <li class="text-muted"><b style="color: #7e8d9f;font-size: 20px; border-bottom:1px solid #7e8d9f;">To:</b>  <br><span >{{order.first_name}} {{order.last_name}}</span></li>
-                    <li class="text-muted">{{order.adress_line_1}}</li>
-                    <li class="text-muted">{{order.city}}, {{order.state}}</li>
-                    <li class="text-muted">{{order.country}}, {{order.postcode}}</li>
-                    <li class="text-muted"><i class="fas fa-phone"></i>{{order.phone}}</li>
+                    <li class="text-muted"><b style="color: #7e8d9f;font-size: 20px; border-bottom:1px solid #7e8d9f;">To:</b>  <br><span >{{order.Order.first_name}} {{order.Order.last_name}}</span></li>
+                    <li class="text-muted">{{order.Order.adress_line_1}}</li>
+                    <li class="text-muted">{{order.Order.city}}, {{order.Order.state}}</li>
+                    <li class="text-muted">{{order.Order.country}}, {{order.Order.postcode}}</li>
+                    <li class="text-muted"><i class="fas fa-phone"></i>{{order.Order.phone}}</li>
                   </ul>
                 </div>
                 <div class="col-xl-4">
                   <p class="text-center" style="color: #7e8d9f;font-size: 20px; border-bottom:1px solid #7e8d9f;">Invoice</p>
                   <ul class="list-unstyled">
                     <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
-                        class="fw-bold">Payment ID:</span><br>{{order.payment.payment_id}}</li>
+                        class="fw-bold">Payment ID:</span><br>{{order.Order.payment.payment_id}}</li>
                     <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061 ;"></i> <span
-                        class="fw-bold">Creation Date: </span>{{order.created_at}}</li>
-                    {% if order.payment.status%}
+                        class="fw-bold">Creation Date: </span>{{order.Order.created_at}}</li>
+                    {% if order.Order.payment.status%}
                     <li class="text-muted"><i class="fas fa-circle" style="color:#8f8061;"></i> <span
                         class="me-1 fw-bold">Status:</span><span class="badge bg-success text-black fw-bold">
                         Paid</span></li>
@@ -130,15 +130,15 @@
               <hr>
               <div class="row">
                 <div class="col-xl-8">
-                  <p class="ms-3">Add additional notes and payment information</p>
+                  <p class="ms-3"> The order is added succefully and Payment is recived</p>
                 </div>
                 <div class="col-xl-3">
                   <ul class="list-unstyled">
                     
-                    <li class="text-muted  mt-2"><span class="text-black me-4">Tax:</span>$ {{order.tax}}</li>
+                    <li class="text-muted  mt-2"><span class="text-black me-4">Tax:</span>$ {{order.Order.tax}}</li>
                   </ul>
                   <p class="text-black float-start"><span class="text-black me-3"> Total Amount</span><span
-                      style="font-size: 25px; color: red;">$ {{order.order_total}}</span></p>
+                      style="font-size: 25px; color: red;">$ {{order.Order.order_total}}</span></p>
                 </div>
               </div>
             </div>

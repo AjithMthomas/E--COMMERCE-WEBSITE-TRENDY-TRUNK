@@ -98,14 +98,14 @@
 
 
     <!-- ##### Single Product Details Area Start ##### -->
-    <section class="single_product_details_area d-flex align-items-center">
+    <section class="single_product_details_area d-flex align-items-center ">
 
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel" >
-                <img src="{{ single_product.images.url }}" alt="no">
-                <img src="{{ single_product.images.url }}" alt="no">
-                <img src="{{ single_product.images.url }}" alt="no">
+                <img src="{{ single_product.images.url }}" alt="product image">
+                <img src="{{ single_product.images.url }}" alt="product image">
+                <img src="{{ single_product.images.url }}" alt="product image">
             </div>
         </div>
 
@@ -120,21 +120,6 @@
 
             <!-- Form -->
             <form class="cart-form clearfix" method="post">
-                <!-- Select Box -->
-                <div class="select-box d-flex mt-50 mb-30">
-                    <select name="select" id="productSize" class="mr-5">
-                        <option value="value">Size: XL</option>
-                        <option value="value">Size: X</option>
-                        <option value="value">Size: M</option>
-                        <option value="value">Size: S</option>
-                    </select>
-                    <select name="select" id="productColor">
-                        <option value="value">Color: Black</option>
-                        <option value="value">Color: White</option>
-                        <option value="value">Color: Red</option>
-                        <option value="value">Color: Purple</option>
-                    </select>
-                </div>
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
@@ -162,14 +147,13 @@
                     <div class="single_widget_area d-flex mb-30">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="#"><img src="img/core-img/logo2.png" alt=""></a>
+                            <a href="#"><img src="#" alt=""></a>
                         </div>
                         <!-- Footer Menu -->
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{% url 'shop' %}">Shop</a></li>
+                                <li><a href="{% url 'blog' %}">Blog</a></li>
                             </ul>
                         </div>
                     </div>

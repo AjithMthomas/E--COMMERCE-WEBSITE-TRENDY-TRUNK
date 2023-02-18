@@ -22,16 +22,9 @@ def index(request):
 
 @login_required(login_url='login')
 def user_account(request):
-    orders=OrderProduct.objects.filter(user=request.user,Ordered=True).order_by("-created_at")
-    userProfile=UserProfile.objects.get(user=request.user)
-    paginator=Paginator(orders,3)
-    page=request.GET.get('page')
-    paged_orders=paginator.get_page(page)
-    print(orders) 
+    userProfile=UserProfile.objects.get(user=request.user)  
     context={
-        'orders':paged_orders,
-        'userProfile':userProfile,
-        
+        'userProfile':userProfile,   
     }
     return render(request,'user_account.html',context)
 
@@ -100,3 +93,13 @@ def edit_account(request):
 def blog(request):
     return render(request,'blog.html')
 
+def orderedProducts(request):
+    orders=OrderProduct.objects.filter(user=request.user,Ordered=True).order_by("-created_at")
+    paginator=Paginator(orders,10)
+    page=request.GET.get('page')
+    paged_orders=paginator.get_page(page)
+    context={
+        'orders':paged_orders,
+        
+    }
+    return render(request,'orderedProducts.html',context)

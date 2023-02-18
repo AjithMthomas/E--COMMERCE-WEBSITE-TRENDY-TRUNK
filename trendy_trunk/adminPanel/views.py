@@ -7,6 +7,7 @@ from category.models import Category
 from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 from order.models import Order,Payment,OrderProduct
 from django.db.models import Q
+from django.db.models import Count
 
 
 
@@ -41,10 +42,12 @@ def adminIndex(request):
     products_count=products.count()
     categories=Category.objects.all()
     categories_count=categories.count()
+    products_in_categories = Category.objects.annotate(product_count=Count('product'))
     context={
         'Users_count':Users_count,
         'products_count':products_count,
-        'categories_count':categories_count
+        'categories_count':categories_count,
+        'categoriess':products_in_categories
     }
     return render(request,'adminPanel/index.html',context)
 
@@ -235,7 +238,7 @@ def updateProduct(request,id):
 
 
 def adminOrders(request):
-    orders = Order.objects.all().order_by('-created_at')
+    orders = OrderProduct.objects.all().order_by('-created_at')
     orders_count = orders.count()
     paginator=Paginator(orders,10)
     page=request.GET.get('page')
@@ -248,7 +251,7 @@ def adminOrders(request):
 
 
 def invoice(request,id):
-    orders=Order.objects.filter(user=request.user,is_orderd=True,id=id)
+    orders=OrderProduct.objects.filter(Ordered=True,id=id)
     context={
         'orders':orders,
     }
